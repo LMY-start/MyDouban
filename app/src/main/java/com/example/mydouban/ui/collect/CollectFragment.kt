@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mydouban.R
-import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_collect.*
 
 class CollectFragment : Fragment() {
 
@@ -21,9 +21,9 @@ class CollectFragment : Fragment() {
     ): View? {
         collectViewModel =
                 ViewModelProvider(this).get(CollectViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val root = inflater.inflate(R.layout.fragment_collect, container, false)
         collectViewModel.text.observe(viewLifecycleOwner, Observer {
-            text_dashboard.text = it
+            text_collect.text = it
         })
         return root
     }
