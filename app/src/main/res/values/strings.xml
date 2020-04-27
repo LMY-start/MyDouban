@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MyDouban</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_list">列表</string>
+    <string name="title_collect">收藏</string>
 </resources>
