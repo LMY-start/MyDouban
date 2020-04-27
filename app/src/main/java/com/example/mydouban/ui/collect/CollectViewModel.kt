@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class CollectViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "这是电影收藏页面"

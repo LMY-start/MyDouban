@@ -10,19 +10,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mydouban.R
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
-class DashboardFragment : Fragment() {
+class CollectFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var collectViewModel: CollectViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+        collectViewModel =
+                ViewModelProvider(this).get(CollectViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        collectViewModel.text.observe(viewLifecycleOwner, Observer {
             text_dashboard.text = it
         })
         return root
