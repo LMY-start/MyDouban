@@ -1,4 +1,4 @@
-package com.example.mydouban.ui.dashboard
+package com.example.mydouban.ui.collect
 
 import android.os.Bundle
 import android.view.LayoutInflater

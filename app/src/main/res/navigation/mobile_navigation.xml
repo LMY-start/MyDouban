@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_list"
-        android:name="com.example.mydouban.ui.home.HomeFragment"
+        android:name="com.example.mydouban.ui.list.HomeFragment"
         android:label="@string/title_list"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_collect"
-        android:name="com.example.mydouban.ui.dashboard.DashboardFragment"
+        android:name="com.example.mydouban.ui.collect.DashboardFragment"
         android:label="@string/title_collect"
         tools:layout="@layout/fragment_dashboard" />
 
