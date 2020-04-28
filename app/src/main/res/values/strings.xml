@@ -3,4 +3,5 @@
     <string name="title_list">列表</string>
     <string name="title_collect">收藏</string>
     <string name="movie_poster">movie poster</string>
+    <string name="detail_app_bar">movie</string>
 </resources>

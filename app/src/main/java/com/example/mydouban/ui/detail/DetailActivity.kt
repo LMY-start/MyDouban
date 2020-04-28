@@ -1,14 +1,14 @@
 package com.example.mydouban.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.mydouban.R
-import com.example.mydouban.databinding.ActivityDetailBinding
+import com.example.mydouban.databinding.MovieDetailHeaderBinding
 import com.example.mydouban.model.MovieDetail
 import com.example.mydouban.viewModel.DetailViewModel
-import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.movie_detail_header.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getMovieDetail() {
         detailViewModel.detailLiveData.observe(this, Observer { detailDto ->
-            val binding = DataBindingUtil.bind<ActivityDetailBinding>(detailLayout)
+            val binding = DataBindingUtil.bind<MovieDetailHeaderBinding>(detailHeaderView)
             binding?.detail = MovieDetail(detailDto)
         })
         detailViewModel.getMovieDetail("25924056")

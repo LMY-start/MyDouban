@@ -1,10 +1,10 @@
-package com.example.mydouban.adapter
+package com.example.mydouban.common
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
-object ImageViewAttrAdapter {
+object MoviePosterAdapter {
 
     @JvmStatic
     @BindingAdapter("poster")
