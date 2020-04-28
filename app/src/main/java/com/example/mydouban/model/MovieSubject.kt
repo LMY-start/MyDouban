@@ -4,7 +4,7 @@ data class MovieSubject(
         val alt: String,
         val casts: List<Cast>,
         val collectCount: Int,
-        val directors: List<Director>,
+        val directors: List<Cast>,
         val durations: List<String>,
         val genres: List<String>,
         val hasVideo: Boolean,

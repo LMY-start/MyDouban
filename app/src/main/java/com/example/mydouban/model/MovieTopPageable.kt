@@ -8,17 +8,3 @@ data class MovieTopPageable(
     val total: Int
 )
 
-data class Director(
-    val alt: String,
-    val avatars: AvatarsX,
-    val id: String,
-    val name: String,
-    val nameEn: String
-)
-
-data class AvatarsX(
-    val large: String,
-    val medium: String,
-    val small: String
-)
-
