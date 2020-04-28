@@ -1,9 +1,10 @@
-package com.example.mydouban.viewModel
+package com.example.mydouban.ui.list
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mydouban.model.MovieSubject
 import com.example.mydouban.model.MovieTopPageable
 import com.example.mydouban.repository.MovieTopRepository
 
@@ -13,7 +14,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         value = "这是new电影列表页面"
     }
 
-    private val movieSubjects = MutableLiveData<List<MovieTopPageable.MovieSubject>>()
+    val movieSubjects = MutableLiveData<List<MovieSubject>>()
     private val repository = MovieTopRepository()
 
     fun getMovieTop() {

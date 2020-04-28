@@ -63,13 +63,6 @@ data class Blooper(
     val title: String
 )
 
-data class Cast(
-    val alt: String,
-    val avatars: Avatars,
-    val id: String,
-    val name: String,
-    val nameEn: String
-)
 
 data class Clip(
     val alt: String,
@@ -81,11 +74,6 @@ data class Clip(
     val title: String
 )
 
-data class Images(
-    val large: String,
-    val medium: String,
-    val small: String
-)
 
 data class Photo(
     val alt: String,
@@ -116,14 +104,6 @@ data class PopularReview(
     val title: String
 )
 
-data class Rating(
-    val average: Double,
-    val details: Details,
-    val max: Int,
-    val min: Int,
-    val stars: String
-)
-
 data class Trailer(
     val alt: String,
     val id: String,
@@ -141,12 +121,6 @@ data class Video(
     val videoId: String
 )
 
-data class Avatars(
-    val large: String,
-    val medium: String,
-    val small: String
-)
-
 data class Author(
     val alt: String,
     val avatar: String,
@@ -162,13 +136,7 @@ data class ReviewRating(
     val value: Double
 )
 
-data class Details(
-    val `1`: Double,
-    val `2`: Double,
-    val `3`: Double,
-    val `4`: Double,
-    val `5`: Double
-)
+
 
 data class Source(
     val literal: String,
