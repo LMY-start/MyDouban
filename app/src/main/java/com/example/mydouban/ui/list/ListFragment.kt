@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
 class ListFragment : Fragment() {
 
     private lateinit var listViewModel: ListViewModel
-    private val adapter by lazy { MovieTopAdapter(this.requireContext()) }
+    private val adapter by lazy { MovieTopAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
