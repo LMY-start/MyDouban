@@ -11,8 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="140dp"
         android:layout_height="250dp"
-        android:padding="5dp"
-        >
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/movie_poster"
@@ -29,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{movieSubject.title}"
+            android:textColor="@color/deepBlack"
             android:textSize="16sp"
-            android:textColor="@color/movieName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_poster" />
 
@@ -39,22 +38,21 @@
             style="@style/RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:progressTint="@color/rateBar"
             android:layout_marginTop="2dp"
             android:numStars="5"
-            android:rating="@{movieSubject.rating.average}"
+            android:progressTint="@color/rateBar"
+            android:rating="@{movieSubject.rating.average/2}"
             android:stepSize="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_name"
-            />
+            app:layout_constraintTop_toBottomOf="@id/movie_name" />
 
         <TextView
             android:id="@+id/movie_rating_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="3.2"
+            android:text="@{String.valueOf(movieSubject.rating.average)}"
             app:layout_constraintStart_toEndOf="@+id/movie_rating"
-            app:layout_constraintTop_toBottomOf="@id/movie_name"/>
+            app:layout_constraintTop_toBottomOf="@id/movie_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

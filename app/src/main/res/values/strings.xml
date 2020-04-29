@@ -6,4 +6,6 @@
     <string name="detail_app_bar">movie</string>
     <string name="detail_collect_btn">想看</string>
     <string name="detail_seen_btn">看过</string>
+    <string name="to_top_lIst"><![CDATA[全部 250 >]]></string>
+    <string name="list_douban_top">豆瓣榜单</string>
 </resources>

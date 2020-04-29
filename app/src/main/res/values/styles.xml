@@ -15,7 +15,7 @@
             @drawable/rating_bar
         </item>
         <item name="android:minHeight">12dip</item>
-        <item name="android:maxHeight">12dip</item>
+        <item name="android:maxHeight">14dip</item>
     </style>
 
 
