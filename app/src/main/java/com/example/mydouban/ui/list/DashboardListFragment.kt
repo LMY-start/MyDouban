@@ -12,9 +12,9 @@ import com.example.mydouban.R
 import kotlinx.android.synthetic.main.fragment_list.*
 
 
-class ListFragment : Fragment() {
+class DashboardListFragment : Fragment() {
 
-    private lateinit var listViewModel: ListViewModel
+    private lateinit var dashboardViewModel: DashboardViewModel
     private val adapter by lazy { MovieTopAdapter() }
 
     override fun onCreateView(
@@ -22,14 +22,14 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        listViewModel =
-            ViewModelProvider(this).get(ListViewModel::class.java)
+        dashboardViewModel =
+            ViewModelProvider(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_list, container, false)
-        listViewModel.movieSubjects.observe(viewLifecycleOwner, Observer { movies ->
+        dashboardViewModel.movieSubjects.observe(viewLifecycleOwner, Observer { movies ->
             adapter.updateData(movies)
         })
 
-        listViewModel.getMovieTop()
+        dashboardViewModel.getMovieTop()
         return root
     }
 
