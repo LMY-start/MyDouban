@@ -4,56 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="movieSubject"
             type="com.example.mydouban.model.MovieSubject" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="140dp"
+        android:layout_height="250dp"
+        android:padding="5dp"
+        >
 
         <ImageView
             android:id="@+id/movie_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:scaleType="fitXY"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:remote="@{movieSubject.images.small}"
-            app:srcCompat="@mipmap/viewbg" />
-
+            app:poster="@{movieSubject.images.small}"
+            app:srcCompat="@mipmap/movie_selected" />
 
         <TextView
             android:id="@+id/movie_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{movieSubject.title}"
             android:hint="hit"
+            android:text="@{movieSubject.title}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
+            app:layout_constraintTop_toBottomOf="@id/movie_poster"
+            />
 
         <RatingBar
             android:id="@+id/movie_rating"
             style="@android:style/Widget.DeviceDefault.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:layout_marginTop="8dp"
             android:numStars="5"
             android:rating="@{movieSubject.rating.average}"
             android:stepSize="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_name" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
-
+            app:layout_constraintTop_toBottomOf="@id/movie_name"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
