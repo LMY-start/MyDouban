@@ -30,10 +30,10 @@ class MovieTopAdapter :
         holder.bind(movies[position])
     }
 
-    fun updateData(newData: List<MovieSubject>) {
+    fun updateData(newMovieSubjects: List<MovieSubject>) {
         println("=============== updateData +++++++++++++++++")
         this.movies.clear()
-        this.movies.addAll(newData)
+        this.movies.addAll(newMovieSubjects)
         notifyDataSetChanged()
     }
 

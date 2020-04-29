@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -29,22 +28,33 @@
             android:id="@+id/movie_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="hit"
             android:text="@{movieSubject.title}"
+            android:textSize="16sp"
+            android:textColor="@color/movieName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_poster"
-            />
+            app:layout_constraintTop_toBottomOf="@id/movie_poster" />
 
         <RatingBar
             android:id="@+id/movie_rating"
-            style="@android:style/Widget.DeviceDefault.RatingBar.Small"
+            style="@style/RatingBar"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/rateBar"
+            android:layout_marginTop="2dp"
             android:numStars="5"
             android:rating="@{movieSubject.rating.average}"
             android:stepSize="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_name"
             />
+
+        <TextView
+            android:id="@+id/movie_rating_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="3.2"
+            app:layout_constraintStart_toEndOf="@+id/movie_rating"
+            app:layout_constraintTop_toBottomOf="@id/movie_name"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
