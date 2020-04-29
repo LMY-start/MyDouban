@@ -4,4 +4,6 @@
     <string name="title_collect">收藏</string>
     <string name="movie_poster">movie poster</string>
     <string name="detail_app_bar">movie</string>
+    <string name="detail_collect_btn">想看</string>
+    <string name="detail_seen_btn">看过</string>
 </resources>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="detail"
             type="com.example.mydouban.model.MovieDetail" />
@@ -68,17 +67,86 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{detail.basicInfo}"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/titleView"
             app:layout_constraintTop_toBottomOf="@+id/originalTitleView"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="英国 / 科幻 惊悚 冒险 / 上映时间：1968-04-02(华盛顿首映) / 片长：149分钟" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleView"
+            app:layout_constraintTop_toBottomOf="@+id/basicInfoVoew"
+            app:layout_constraintVertical_bias="0.0">
+
+            <RelativeLayout android:orientation="horizontal"
+                android:id="@+id/collection_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corners_background"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/moreImgView1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="10dp"
+                    android:contentDescription="collect"
+                    app:srcCompat="@drawable/ic_collect_unselected" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/moreImgView1"
+                    android:layout_weight="1"
+                    android:text="@string/detail_collect_btn" />
+            </RelativeLayout>
+
+            <RelativeLayout android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/round_corners_background"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/moreImgView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="10dp"
+                    android:contentDescription="collect"
+                    app:srcCompat="@drawable/ic_collect_seen" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/moreImgView"
+                    android:layout_weight="1"
+                    android:text="@string/detail_seen_btn" />
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
