@@ -6,9 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.mydouban.R
 import com.example.mydouban.databinding.MovieDetailHeaderBinding
+import com.example.mydouban.databinding.MovieRatingDetailBinding
 import com.example.mydouban.model.MovieDetail
+import com.example.mydouban.model.RatingDetail
 import com.example.mydouban.viewModel.DetailViewModel
 import kotlinx.android.synthetic.main.movie_detail_header.*
+import kotlinx.android.synthetic.main.movie_rating_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -23,8 +26,17 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getMovieDetail() {
         detailViewModel.detailLiveData.observe(this, Observer { detailDto ->
-            val binding = DataBindingUtil.bind<MovieDetailHeaderBinding>(detailHeaderView)
-            binding?.detail = MovieDetail(detailDto)
+            val headerBinding = DataBindingUtil.bind<MovieDetailHeaderBinding>(detailHeaderView)
+            headerBinding?.detail = MovieDetail(detailDto)
+            val ratingBinding =
+                DataBindingUtil.bind<MovieRatingDetailBinding>(movieDetailRatingView)
+
+            ratingBinding?.ratingDetail = RatingDetail(
+                detailDto.rating,
+                detailDto.wishCount,
+                detailDto.collectCount,
+                detailDto.ratingsCount
+            )
         })
         detailViewModel.getMovieDetail("25924056")
     }

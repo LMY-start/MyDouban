@@ -5,4 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="rateBar">#FF9800</color>
     <color name="deepBlack">#000000</color>
+    <color name="movieName">#020202</color>
+    <color name="detailRatingStarBackgroundDark">#7B7B7B</color>
+    <color name="detailRatingProgressBackgroundDark">#DBDDE0</color>
+    <color name="detailRatingProgress">#F4AE4B</color>
 </resources>

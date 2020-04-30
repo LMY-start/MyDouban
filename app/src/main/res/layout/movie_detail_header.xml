@@ -13,13 +13,12 @@
         android:id="@+id/detailHeaderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        >
 
         <ImageView
             android:id="@+id/posterView"
             android:layout_width="@dimen/movie_poster_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
@@ -37,7 +36,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:text="@{detail.title}"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -52,11 +50,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
             android:text="@{detail.originalTitle}"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/titleView"
             app:layout_constraintStart_toStartOf="@+id/titleView"
             app:layout_constraintTop_toBottomOf="@+id/titleView"
             tools:text="2001: A Space Odyssey (1968)" />
@@ -66,12 +63,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{detail.basicInfo}"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/titleView"
             app:layout_constraintStart_toStartOf="@+id/titleView"
             app:layout_constraintTop_toBottomOf="@+id/originalTitleView"
             tools:text="英国 / 科幻 惊悚 冒险 / 上映时间：1968-04-02(华盛顿首映) / 片长：149分钟" />
@@ -80,70 +76,78 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/titleView"
             app:layout_constraintStart_toStartOf="@+id/titleView"
             app:layout_constraintTop_toBottomOf="@+id/basicInfoVoew"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.0"
+            android:baselineAligned="false">
 
-            <RelativeLayout android:orientation="horizontal"
-                android:id="@+id/collection_btn"
+            <RelativeLayout
+                android:id="@+id/wish_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_corners_background"
+                android:backgroundTint="@android:color/background_light"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:paddingLeft="5dp"
                 android:paddingTop="10dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/moreImgView1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
-                    android:contentDescription="collect"
-                    app:srcCompat="@drawable/ic_collect_unselected" />
+                    android:id="@+id/wishBtnIcon"
+                    android:layout_width="@dimen/detail_collect_btn_icon_size"
+                    android:layout_height="@dimen/detail_collect_btn_icon_size"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/detail_wish_btn"
+                    app:srcCompat="@drawable/ic_detail_wish" />
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/wishBtnText"
+                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/moreImgView1"
-                    android:layout_weight="1"
-                    android:text="@string/detail_collect_btn" />
+                    android:layout_toEndOf="@+id/wishBtnIcon"
+                    android:text="@string/detail_wish_btn" />
             </RelativeLayout>
 
-            <RelativeLayout android:orientation="horizontal"
+            <RelativeLayout
+                android:id="@+id/collect_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/round_corners_background"
+                android:backgroundTint="@android:color/background_light"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:paddingLeft="5dp"
                 android:paddingTop="10dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/moreImgView"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
-                    android:contentDescription="collect"
-                    app:srcCompat="@drawable/ic_collect_seen" />
+                    android:id="@+id/collectBtnIcon"
+                    android:layout_width="@dimen/detail_collect_btn_icon_size"
+                    android:layout_height="@dimen/detail_collect_btn_icon_size"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@string/detail_collect_btn"
+                    app:srcCompat="@drawable/ic_detail_collect" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/collectBtnText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/moreImgView"
-                    android:layout_weight="1"
-                    android:text="@string/detail_seen_btn" />
+                    android:layout_alignBaseline="@id/collectBtnIcon"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/collectBtnIcon"
+                    android:text="@string/detail_collect_btn" />
             </RelativeLayout>
 
         </LinearLayout>

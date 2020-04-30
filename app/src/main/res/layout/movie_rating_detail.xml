@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="ratingDetail"
+            type="com.example.mydouban.model.RatingDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/movieDetailRatingView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners_background"
+        android:backgroundTint="@android:color/white">
+
+        <TextView
+            android:id="@+id/ratingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/douban_rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3"
+            tools:layout_constraintGuide_percent="0.4" />
+
+        <TextView
+            android:id="@+id/average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:text="@{String.valueOf(ratingDetail.rating.average)}"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/ratingTitle"
+            tools:text="8.8" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/movie_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:numStars="5"
+            android:progressTint="@color/rateBar"
+            android:rating="@{ratingDetail.stars}"
+            android:stepSize="0.05"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/average"
+            app:srb_drawBorderEnabled="false"
+            app:srb_fillColor="@color/detailRatingProgress"
+            app:srb_isIndicator="true"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="16dp"
+            app:srb_starsSeparation="1dp" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/average"
+            app:srb_drawBorderEnabled="false"
+            app:srb_numberOfStars="5"
+            app:srb_isIndicator="true"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="@dimen/detail_rating_star_size_small"
+            app:srb_starsSeparation="0dp" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar5"
+            app:srb_drawBorderEnabled="false"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="4"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="@dimen/detail_rating_star_size_small"
+            app:srb_starsSeparation="0dp" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar4"
+            app:srb_drawBorderEnabled="false"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="3"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="@dimen/detail_rating_star_size_small"
+            app:srb_starsSeparation="0dp" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar3"
+            app:srb_drawBorderEnabled="false"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="2"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="@dimen/detail_rating_star_size_small"
+            app:srb_starsSeparation="0dp" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar2"
+            app:srb_drawBorderEnabled="false"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="1"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="@dimen/detail_rating_star_size_small"
+            app:srb_starsSeparation="0dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"></LinearLayout>
+
+        <TextView
+            android:id="@+id/wishText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{ratingDetail.wishCountText}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/ratingTitle"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:text="25.9万人看过" />
+
+        <TextView
+            android:id="@+id/collectText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{ratingDetail.collectCountText}"
+            app:layout_constraintStart_toEndOf="@+id/wishText"
+            app:layout_constraintTop_toTopOf="@+id/wishText"
+            tools:text="15.8万人想看" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ProgressBar
+            android:id="@+id/progressBar5"
+            style="@style/DetailRatingProgressHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="1dp"
+            android:max="@{ratingDetail.rating.details.total}"
+            android:progress="@{ratingDetail.rating.details.get5()}"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@id/simpleRatingBar5" />
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="@style/DetailRatingProgressHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:max="@{ratingDetail.rating.details.total}"
+            android:progress="@{ratingDetail.rating.details.get4()}"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar4"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@id/simpleRatingBar4" />
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="@style/DetailRatingProgressHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:max="@{ratingDetail.rating.details.total}"
+            android:progress="@{ratingDetail.rating.details.get3()}"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar3"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@id/simpleRatingBar3" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="@style/DetailRatingProgressHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:max="@{ratingDetail.rating.details.total}"
+            android:progress="@{ratingDetail.rating.details.get2()}"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar2"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@id/simpleRatingBar2" />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="@style/DetailRatingProgressHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:max="@{ratingDetail.rating.details.total}"
+            android:progress="@{ratingDetail.rating.details.get1()}"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar1"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="@id/simpleRatingBar1" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{ratingDetail.ratingsCountText}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar1"
+            tools:text="195748人评分"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
