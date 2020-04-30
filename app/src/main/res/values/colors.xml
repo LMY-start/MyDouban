@@ -9,4 +9,7 @@
     <color name="detailRatingStarBackgroundDark">#7B7B7B</color>
     <color name="detailRatingProgressBackgroundDark">#DBDDE0</color>
     <color name="detailRatingProgress">#F4AE4B</color>
+    <color name="grayBlack">#E10C0C0C</color>
+    <color name="fullWhite">#FFFFFF</color>
+    <color name="grey">#6AFFFFFF</color>
 </resources>

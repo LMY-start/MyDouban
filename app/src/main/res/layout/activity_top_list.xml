@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/top_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/grayBlack"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/top_list_head_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_top250_background"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:id="@+id/go_back_to_dashboard"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="38dp"
+                android:background="@drawable/ic_back_32"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="pin" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="178dp"
+                android:layout_marginTop="80dp"
+                android:text="@string/list_top250_text"
+                android:textSize="@dimen/font_large"
+                android:textColor="@color/fullWhite" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="178dp"
+                android:layout_marginTop="120dp"
+                android:text="@string/list_top250_content"
+                android:textSize="@dimen/font_mid"
+                android:textColor="@color/fullWhite" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="178dp"
+                android:layout_marginTop="145dp"
+                android:background="@color/fullWhite"
+                android:textColor="@color/grayBlack"
+                android:textSize="@dimen/font_mid"
+                android:text="+ 关注" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleMargins="5dp" />
+
+
+            <ImageView
+                android:id="@+id/myPhoto"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/ic_star_small" />
+
+            <TextView
+                android:id="@+id/list_top250_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/list_top250_describe"
+                android:textSize="@dimen/font_mid"
+                android:textColor="@color/fullWhite"
+
+                />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:id="@+id/top_list_toolbar_content"
+                >
+
+                <TextView
+                    android:id="@+id/list_top250_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_top250_text"
+                    android:textColor="@color/fullWhite"
+                    android:textSize="@dimen/font_mid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_top250_content"
+                    android:textColor="@color/fullWhite"
+                    android:textSize="@dimen/font_small"
+                    app:layout_constraintStart_toStartOf="@+id/list_top250_text"
+                    app:layout_constraintTop_toBottomOf="@+id/list_top250_text" />
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/fullWhite"
+                    android:text="@string/focus"
+                    android:textColor="@color/grayBlack"
+                    android:textSize="@dimen/font_mid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/top_list_recycle" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

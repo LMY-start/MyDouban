@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
-import com.example.mydouban.databinding.MovieTopItemBinding
+import com.example.mydouban.databinding.TopDashboardItemBindingImpl
 import com.example.mydouban.model.MovieSubject
 
 class MovieTopAdapter :
@@ -17,7 +17,7 @@ class MovieTopAdapter :
         return MovieTopViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.movie_top_item,
+                R.layout.top_dashboard_item,
                 parent,
                 false
             )
@@ -38,7 +38,7 @@ class MovieTopAdapter :
     }
 
 
-    inner class MovieTopViewHolder(val dataBinding: MovieTopItemBinding) :
+    inner class MovieTopViewHolder(val dataBinding: TopDashboardItemBindingImpl) :
         RecyclerView.ViewHolder(dataBinding.root) {
         fun bind(movie: MovieSubject) {
             println("MovieTopViewHolder bind $movie")

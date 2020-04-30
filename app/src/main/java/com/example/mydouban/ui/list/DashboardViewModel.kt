@@ -12,9 +12,9 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
     val movieSubjects = MutableLiveData<List<MovieSubject>>()
     private val repository = MovieTopRepository()
 
-    fun getMovieTop() {
+    fun getMovieTop6() {
         repository.getMovieTop { movieTop ->
-            val top6 = movieTop.subjects.subList(0, 6)
+            val top6 = movieTop.subjects.subList(14, 20)
             movieSubjects.postValue(top6)
         }
     }
