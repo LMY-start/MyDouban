@@ -35,12 +35,18 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <include
-            layout="@layout/movie_detail_header"
+            layout="@layout/detail_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp" />
 
-        <include layout="@layout/movie_rating_detail" />
+        <include
+            layout="@layout/detail_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp" />
+
+        <include layout="@layout/detail_online_plays" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

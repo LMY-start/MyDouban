@@ -5,4 +5,6 @@
     <dimen name="movie_poster_width">100dp</dimen>
     <dimen name="detail_collect_btn_icon_size">16dp</dimen>
     <dimen name="detail_rating_star_size_small">10dp</dimen>
+    <dimen name="detail_play_icon">24dp</dimen>
+    <dimen name="detail_play_icon_small">16dp</dimen>
 </resources>

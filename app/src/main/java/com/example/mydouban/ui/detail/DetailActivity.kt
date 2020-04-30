@@ -1,17 +1,20 @@
 package com.example.mydouban.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.mydouban.R
-import com.example.mydouban.databinding.MovieDetailHeaderBinding
-import com.example.mydouban.databinding.MovieRatingDetailBinding
+import com.example.mydouban.databinding.DetailHeaderBinding
+import com.example.mydouban.databinding.DetailOnlinePlaysBinding
+import com.example.mydouban.databinding.DetailRatingBinding
 import com.example.mydouban.model.MovieDetail
 import com.example.mydouban.model.RatingDetail
 import com.example.mydouban.viewModel.DetailViewModel
-import kotlinx.android.synthetic.main.movie_detail_header.*
-import kotlinx.android.synthetic.main.movie_rating_detail.*
+import kotlinx.android.synthetic.main.detail_header.*
+import kotlinx.android.synthetic.main.detail_online_plays.*
+import kotlinx.android.synthetic.main.detail_rating.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -26,10 +29,10 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getMovieDetail() {
         detailViewModel.detailLiveData.observe(this, Observer { detailDto ->
-            val headerBinding = DataBindingUtil.bind<MovieDetailHeaderBinding>(detailHeaderView)
+            val headerBinding = DataBindingUtil.bind<DetailHeaderBinding>(detailHeaderView)
             headerBinding?.detail = MovieDetail(detailDto)
             val ratingBinding =
-                DataBindingUtil.bind<MovieRatingDetailBinding>(movieDetailRatingView)
+                DataBindingUtil.bind<DetailRatingBinding>(movieDetailRatingView)
 
             ratingBinding?.ratingDetail = RatingDetail(
                 detailDto.rating,
@@ -37,6 +40,14 @@ class DetailActivity : AppCompatActivity() {
                 detailDto.collectCount,
                 detailDto.ratingsCount
             )
+
+            if (detailDto.videos.isNotEmpty()) {
+                val onlinePlaysBinding = DataBindingUtil.bind<DetailOnlinePlaysBinding>(detailOnlinePlays)
+                onlinePlaysBinding?.videos = detailDto.videos
+            } else {
+                detailOnlinePlays.visibility = View.GONE
+            }
+
         })
         detailViewModel.getMovieDetail("25924056")
     }

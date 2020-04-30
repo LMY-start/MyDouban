@@ -1,5 +1,8 @@
 package com.example.mydouban.model
 
+import java.math.RoundingMode
+import java.text.DecimalFormat
+
 data class RatingDetail(
     var rating: Rating,
     var wishCount: Int,
@@ -13,8 +16,11 @@ data class RatingDetail(
     val ratingsCountText: String get() = "${ratingsCount}人评分"
 
     private fun formatPeopleCount(count: Int): String =
-        if (count >= 10000) "${String.format(
-            "%.1f",
-            count / 10000.0
-        )}万人" else "${count.toString()}人"
+        if (count >= 10000) "${formatOneDecimal(count / 10000.0)}万人" else "${count}人"
+
+    private fun formatOneDecimal(num: Double): String {
+        val formatter = DecimalFormat("0.0")
+        formatter.roundingMode = RoundingMode.DOWN
+        return formatter.format(num)
+    }
 }

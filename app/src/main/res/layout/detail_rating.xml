@@ -24,6 +24,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/douban_rating"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,6 +158,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:text="@{ratingDetail.wishCountText}"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/ratingTitle"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
@@ -168,6 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@{ratingDetail.collectCountText}"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/wishText"
             app:layout_constraintTop_toTopOf="@+id/wishText"
             tools:text="15.8万人想看" />
@@ -186,7 +189,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="1dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="48dp"
             android:layout_marginBottom="1dp"
             android:max="@{ratingDetail.rating.details.total}"
             android:progress="@{ratingDetail.rating.details.get5()}"
@@ -261,9 +264,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@{ratingDetail.ratingsCountText}"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/progressBar5"
             app:layout_constraintTop_toBottomOf="@+id/progressBar1"
-            tools:text="195748人评分"/>
+            tools:text="195748人评分" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
