@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 class DashboardListFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-    private val adapter by lazy { MovieTopAdapter() }
+    private val adapter by lazy { DashboardListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,

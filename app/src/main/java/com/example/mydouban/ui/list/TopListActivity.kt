@@ -1,7 +1,6 @@
 package com.example.mydouban.ui.list
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mydouban.R
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
-import java.lang.Math.abs
 
 class TopListActivity : AppCompatActivity() {
 
@@ -31,18 +29,18 @@ class TopListActivity : AppCompatActivity() {
                     verticalOffset == 0 -> {
                         println("展开状态")
                         top_list_toolbar_content.visibility = View.GONE
-                        list_top250_describe.visibility=View.VISIBLE
+                        list_top250_describe.visibility = View.VISIBLE
 
                     }
-                    abs(verticalOffset) >= appBarLayout?.totalScrollRange!! -> {
+                    kotlin.math.abs(verticalOffset) >= appBarLayout?.totalScrollRange!! -> {
                         println("折叠状态");
                         top_list_toolbar_content.visibility = View.VISIBLE
-                        list_top250_describe.visibility=View.GONE
+                        list_top250_describe.visibility = View.GONE
                     }
                     else -> {
                         println("中间状态");
                         top_list_toolbar_content.visibility = View.GONE
-                        list_top250_describe.visibility=View.VISIBLE
+                        list_top250_describe.visibility = View.VISIBLE
 
                     }
                 }
