@@ -5,12 +5,24 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydouban.R
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
+import kotlinx.android.synthetic.main.top_list_recycle_scrolling.*
+import kotlin.math.abs
 
 class TopListActivity : AppCompatActivity() {
 
+    private lateinit var topListViewModel: TopListViewModel
+    private val adapter by lazy {
+//        val movies = GsonUtil.parseMovieTopPageable(FileStorage.read(this, "myFile")).subjects
+//            .map { MovieSubject(it) }.toMutableList()
+//        TopListAdapter(movies)
+        TopListAdapter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +32,20 @@ class TopListActivity : AppCompatActivity() {
         go_back_to_dashboard.setOnClickListener {
             finish()
         }
+        addAppBarOffsetChangListener()
+        topListViewModel =
+            ViewModelProvider(this).get(TopListViewModel::class.java)
+        topListViewModel.movieSubjectsTop250.observe(this, Observer { movies ->
+            adapter.updateData(movies)
+        })
+        topListViewModel.getMovieTop250(this)
 
+        top_250_recycle.layoutManager = LinearLayoutManager(this)
+        top_250_recycle.adapter =adapter
+
+    }
+
+    private fun addAppBarOffsetChangListener() {
         app_bar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener,
             View.OnClickListener {
 
@@ -32,7 +57,7 @@ class TopListActivity : AppCompatActivity() {
                         list_top250_describe.visibility = View.VISIBLE
 
                     }
-                    kotlin.math.abs(verticalOffset) >= appBarLayout?.totalScrollRange!! -> {
+                    abs(verticalOffset) >= appBarLayout?.totalScrollRange!! -> {
                         println("折叠状态");
                         top_list_toolbar_content.visibility = View.VISIBLE
                         list_top250_describe.visibility = View.GONE
@@ -50,9 +75,7 @@ class TopListActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

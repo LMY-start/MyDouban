@@ -10,29 +10,66 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="140dp"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/movie_poster"
-            android:layout_width="match_parent"
+            android:id="@+id/movie_poster_small"
+            android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="fitXY"
+            android:src="@mipmap/viewbg"
+            app:poster="@{movieSubject.images.small}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@mipmap/viewbg"
             app:srcCompat="@mipmap/movie_selected" />
+
+        <ImageView
+            android:id="@+id/movie_poster_big"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/viewbg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/movie_selected" />
+
 
         <TextView
             android:id="@+id/movie_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="movie name"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@{movieSubject.title}"
             android:textColor="@color/deepBlack"
-            android:textSize="@dimen/font_mid"
+            android:textSize="@dimen/font_large"
+            app:layout_constraintStart_toEndOf="@+id/movie_play"
+            app:layout_constraintTop_toBottomOf="@id/movie_poster_small"
+            tools:text="肖申克的救赎" />
+
+
+        <ImageView
+            android:id="@+id/movie_play"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/ic_detail_play"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_poster" />
+            app:layout_constraintTop_toBottomOf="@id/movie_poster_small" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.372" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

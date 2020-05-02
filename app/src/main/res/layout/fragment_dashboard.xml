@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/to_top_list"
+        android:id="@+id/btn_to_top_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -30,7 +30,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movie_top_list"
+        android:id="@+id/dashboard_recycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

@@ -1,20 +1,10 @@
 package com.example.mydouban.model
 
-data class MovieSubject(
-        val alt: String,
-        val casts: List<Cast>,
-        val collectCount: Int,
-        val directors: List<Cast>,
-        val durations: List<String>,
-        val genres: List<String>,
-        val hasVideo: Boolean,
-        val id: String,
-        val images: Images,
-        val mainlandPubdate: String,
-        val originalTitle: String,
-        val pubdates: List<String>,
-        val rating: Rating,
-        val subtype: String,
-        val title: String,
-        val year: String
-    )
+class MovieSubject(movieSubjectDto: MovieSubjectDto) {
+    val id: String = movieSubjectDto.id
+    val images: Images = movieSubjectDto.images
+    val rating: Rating = movieSubjectDto.rating
+    val title: String = movieSubjectDto.title
+    val year: String = movieSubjectDto.year
+    val photos: MutableList<String> = mutableListOf()
+}

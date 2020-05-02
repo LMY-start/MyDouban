@@ -26,7 +26,7 @@ class DashboardListFragment : Fragment() {
         dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        dashboardViewModel.movieSubjects.observe(viewLifecycleOwner, Observer { movies ->
+        dashboardViewModel.movieSubjectsTop6.observe(viewLifecycleOwner, Observer { movies ->
             adapter.updateData(movies)
         })
         dashboardViewModel.getMovieTop6()
@@ -36,10 +36,10 @@ class DashboardListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        movie_top_list.layoutManager = GridLayoutManager(this.context,3)
-        movie_top_list.adapter = adapter
+        dashboard_recycle.layoutManager = GridLayoutManager(this.context,3)
+        dashboard_recycle.adapter = adapter
 
-        to_top_list.setOnClickListener {
+        btn_to_top_list.setOnClickListener {
             startActivity(Intent(this.requireContext(),TopListActivity::class.java))
         }
     }
