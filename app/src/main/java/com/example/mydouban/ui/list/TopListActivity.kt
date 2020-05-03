@@ -17,32 +17,33 @@ import kotlin.math.abs
 class TopListActivity : AppCompatActivity() {
 
     private lateinit var topListViewModel: TopListViewModel
-    private val adapter by lazy {
-//        val movies = GsonUtil.parseMovieTopPageable(FileStorage.read(this, "myFile")).subjects
-//            .map { MovieSubject(it) }.toMutableList()
-//        TopListAdapter(movies)
-        TopListAdapter()
-    }
+    private val adapter by lazy { TopListAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_top_list)
         setSupportActionBar(toolbar)
         title = ""
+
         go_back_to_dashboard.setOnClickListener {
             finish()
         }
         addAppBarOffsetChangListener()
+
+        getMovieTop250()
+
+        top_250_recycle.layoutManager = LinearLayoutManager(this)
+        top_250_recycle.adapter = adapter
+
+    }
+
+    private fun getMovieTop250() {
         topListViewModel =
             ViewModelProvider(this).get(TopListViewModel::class.java)
         topListViewModel.movieSubjectsTop250.observe(this, Observer { movies ->
             adapter.updateData(movies)
         })
         topListViewModel.getMovieTop250(this)
-
-        top_250_recycle.layoutManager = LinearLayoutManager(this)
-        top_250_recycle.adapter =adapter
-
     }
 
     private fun addAppBarOffsetChangListener() {

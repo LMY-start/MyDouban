@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
-import com.example.mydouban.databinding.TopListRecycleItemBindingImpl
-import com.example.mydouban.model.MovieSubject
+import com.example.mydouban.databinding.TopListRecycleItemBinding
+import com.example.mydouban.model.MovieSubjectDetail
 
 class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>() {
 
-    private val movies: MutableList<MovieSubject> = mutableListOf()
+    private val movies: MutableList<MovieSubjectDetail> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopListViewHolder {
         return TopListViewHolder(
@@ -30,17 +30,17 @@ class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>(
     }
 
 
-    fun updateData(newMovies: List<MovieSubject>) {
-        this.movies.clear()
-        this.movies.addAll(newMovies)
-        notifyDataSetChanged()
+    fun updateData(newMovie: MovieSubjectDetail) {
+        val lastIndex = this.movies.lastIndex
+        this.movies.add(newMovie)
+        notifyItemChanged(lastIndex)
     }
 
-    inner class TopListViewHolder(private val dataBinding: TopListRecycleItemBindingImpl) :
+    inner class TopListViewHolder(private val dataBinding: TopListRecycleItemBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {
-        fun bind(movie: MovieSubject) {
+        fun bind(movie: MovieSubjectDetail) {
             println("TopListViewHolder bind $movie")
-            dataBinding.movieSubject = movie
+            dataBinding.movieSubjectDetail = movie
         }
     }
 

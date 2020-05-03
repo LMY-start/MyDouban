@@ -62,16 +62,6 @@ data class MovieDetailDto(
         val title: String
     )
 
-
-    data class Photo(
-        val alt: String,
-        val cover: String,
-        val icon: String,
-        val id: String,
-        val image: String,
-        val thumb: String
-    )
-
     data class PopularComment(
         val author: Author,
         val content: String,
