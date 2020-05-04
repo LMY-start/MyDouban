@@ -6,16 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailHeaderBinding
 import com.example.mydouban.databinding.DetailOnlinePlaysBinding
 import com.example.mydouban.databinding.DetailRatingBinding
-import com.example.mydouban.model.Cast
-import com.example.mydouban.model.MovieDetail
-import com.example.mydouban.model.MovieDetailDto
-import com.example.mydouban.model.RatingDetail
+import com.example.mydouban.model.*
 import com.example.mydouban.ui.detail.adapter.CastsAdapter
+import com.example.mydouban.ui.detail.adapter.CommentsAdapter
 import com.example.mydouban.ui.detail.adapter.TagsAdapter
 import com.example.mydouban.viewModel.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -43,6 +42,7 @@ class DetailActivity : AppCompatActivity() {
             bindVideos(detailDto)
             bindTags(detailDto)
             bindCasts(detailDto.directors, detailDto.casts)
+            bindComments(detailDto.popularComments)
 
             movieTitle = detailDto.title
             summary.text = detailDto.summary
@@ -86,6 +86,12 @@ class DetailActivity : AppCompatActivity() {
     private fun bindCasts(directors: List<Cast>, casts: List<Cast>) {
         castListView.layoutManager = horizontalLinearLayoutManager
         castListView.adapter = CastsAdapter(directors, casts)
+    }
+
+    private fun bindComments(comments: List<PopularComment>) {
+        commentListView.layoutManager = LinearLayoutManager(this)
+        commentListView.adapter = CommentsAdapter(comments)
+        commentListView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
     private fun onScrollChangeListener() {

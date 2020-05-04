@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="comment"
+            type="com.example.mydouban.model.PopularComment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/authorAvatar"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/detail_comments_author_avatar"
+            app:commentAvatar="@{comment.author.avatar}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/authorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{comment.author.name}"
+            app:layout_constraintStart_toEndOf="@+id/authorAvatar"
+            app:layout_constraintTop_toTopOf="@+id/authorAvatar"
+            tools:text="彦夕" />
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/simpleRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="@{comment.rating.value}"
+            app:layout_constraintStart_toStartOf="@+id/authorName"
+            app:layout_constraintTop_toBottomOf="@+id/authorName"
+            app:srb_drawBorderEnabled="false"
+            app:srb_fillColor="@color/detailRatingProgress"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="5"
+            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starCornerRadius="0.0"
+            app:srb_starSize="11dp"
+            app:srb_starsSeparation="0dp"
+            app:srb_stepSize="0.5"></com.iarcuschin.simpleratingbar.SimpleRatingBar>
+
+        <TextView
+            android:id="@+id/createdAtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{comment.createdDate}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar"
+            app:layout_constraintStart_toEndOf="@+id/simpleRatingBar"
+            app:layout_constraintTop_toTopOf="@+id/simpleRatingBar"
+            tools:text="2007年12月8日" />
+
+        <cn.carbs.android.expandabletextview.library.ExpandableTextView
+            android:id="@+id/commentContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@{comment.content}"
+            app:etv_GapToExpandHint=" "
+            app:etv_MaxLinesOnShrink="4"
+            app:etv_ToExpandHint="@string/detail_summary_expand_hint"
+            app:etv_ToExpandHintColor="@color/grayBlack"
+            app:etv_ToShrinkHintShow="false"
+            app:layout_constraintStart_toStartOf="@+id/authorAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar"
+            tools:text="生命的奥德" />
+
+        <ImageView
+            android:id="@+id/commentLike"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/like"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/commentContent"
+            app:layout_constraintTop_toBottomOf="@+id/commentContent"
+            app:srcCompat="@drawable/ic_like" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@{String.valueOf(comment.usefulCount)}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/commentLike"
+            app:layout_constraintStart_toEndOf="@+id/commentLike"
+            tools:text="1481" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

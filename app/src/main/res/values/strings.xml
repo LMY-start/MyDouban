@@ -15,6 +15,7 @@
     <string name="todo">TODO</string>
     <string name="director">导演</string>
     <string name="cast">演员</string>
+    <string name="like">like</string>
 
     <string name="detail_collect_btn">看过</string>
     <string name="detail_app_bar">电影</string>
@@ -26,4 +27,6 @@
     <string name="detail_summary_expand_hint">展开</string>
     <string name="detail_casts">演职员</string>
     <string name="detail_cast_avatar">detail cast avatar</string>
+    <string name="detail_popular_comments">短评</string>
+    <string name="detail_comments_author_avatar">detail comments author avatar</string>
 </resources>

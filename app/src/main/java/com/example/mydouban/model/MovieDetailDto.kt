@@ -62,21 +62,11 @@ data class MovieDetailDto(
         val title: String
     )
 
-    data class PopularComment(
-        val author: Author,
-        val content: String,
-        val createdAt: String,
-        val id: String,
-        val reviewRating: ReviewRating,
-        val subjectId: String,
-        val usefulCount: Int
-    )
-
     data class PopularReview(
         val alt: String,
         val author: Author,
         val id: String,
-        val reviewRating: ReviewRating,
+        val rating: ReviewRating,
         val subjectId: String,
         val summary: String,
         val title: String
@@ -111,7 +101,7 @@ data class MovieDetailDto(
     data class ReviewRating(
         val max: Int,
         val min: Int,
-        val value: Double
+        val value: Float
     )
 
     data class Source(
