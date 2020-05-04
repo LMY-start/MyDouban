@@ -5,4 +5,8 @@ class MovieSubject(movieSubjectDto: MovieSubjectDto) {
     val images: Images = movieSubjectDto.images
     val rating: Rating = movieSubjectDto.rating
     val title: String = movieSubjectDto.title
+    val photos = mutableListOf<Photo>()
+    var describe = ""
+    var start = 0
+    var ranking = 0
 }

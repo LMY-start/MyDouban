@@ -14,7 +14,7 @@ class MovieSubjectDetail(movieDetailDto: MovieDetailDto) {
     val describe: String = describe()
 
     private fun describe(): String {
-        val str= String.format(
+        return String.format(
             "%s / %s / %s / %s / %s",
             year,
             countries[0],
@@ -22,8 +22,6 @@ class MovieSubjectDetail(movieDetailDto: MovieDetailDto) {
             getDirectors(),
             getCasts()
         )
-        println("=======describe ${str}")
-        return str
     }
 
 

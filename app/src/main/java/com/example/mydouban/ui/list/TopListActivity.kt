@@ -24,17 +24,13 @@ class TopListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_top_list)
         setSupportActionBar(toolbar)
         title = ""
-
         go_back_to_dashboard.setOnClickListener {
             finish()
         }
         addAppBarOffsetChangListener()
-
         getMovieTop250()
-
         top_250_recycle.layoutManager = LinearLayoutManager(this)
         top_250_recycle.adapter = adapter
-
     }
 
     private fun getMovieTop250() {

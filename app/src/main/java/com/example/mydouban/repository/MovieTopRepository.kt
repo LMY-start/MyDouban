@@ -30,7 +30,7 @@ class MovieTopRepository {
                     .map { MovieSubject(it) }.toList()
             )
         } else {
-            getMovieTopAndSaveToFile(activity, "$TOP_250_URL&start=200", onSuccess)
+            getMovieTopAndSaveToFile(activity, "$TOP_250_URL&start=0", onSuccess)
 
         }
     }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="movieSubjectDetail"
-            type="com.example.mydouban.model.MovieSubjectDetail" />
+            name="movieSubject"
+            type="com.example.mydouban.model.MovieSubject" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,6 +15,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:padding="5dp">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:text="@{String.valueOf(movieSubject.ranking)}"
+            android:gravity="center"
+            android:padding="0dp"
+            android:textColor="@color/fullWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rankingIcon="@{movieSubject.ranking}"
+            />
+
 
         <ImageView
             android:id="@+id/movie_poster_small"
@@ -24,7 +38,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:poster="@{movieSubjectDetail.images.small}"
+            app:poster="@{movieSubject.images.small}"
             app:srcCompat="@mipmap/movie_selected"
             android:contentDescription="@string/todo" />
 
@@ -34,7 +48,7 @@
             android:layout_height="180dp"
             android:layout_marginStart="5dp"
             android:scaleType="fitXY"
-            app:poster="@{movieSubjectDetail.photos[0].thumb}"
+            app:poster="@{movieSubject.photos[0].thumb}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline3"
             app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:text="@{movieSubjectDetail.title}"
+            android:text="@{movieSubject.title}"
             android:textColor="@color/deepBlack"
             android:textSize="@dimen/font_large"
             app:layout_constraintStart_toEndOf="@+id/movie_play"
@@ -97,7 +111,7 @@
             android:layout_marginTop="8dp"
             android:numStars="5"
             android:progressTint="@color/rateBar"
-            android:rating="@{movieSubjectDetail.rating.average/2}"
+            android:rating="@{movieSubject.rating.average/2}"
             android:stepSize="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_name" />
@@ -107,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="@{String.valueOf(movieSubjectDetail.rating.average)}"
+            android:text="@{String.valueOf(movieSubject.rating.average)}"
             android:textColor="@color/gold"
             android:textSize="@dimen/font_middle"
             android:textStyle="bold"
@@ -124,7 +138,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btn_want_watch"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/top_list_rating"
-            android:text="@{movieSubjectDetail.describe}"
+            android:text="@{movieSubject.describe}"
             tools:text="1994 / 美国 / 犯罪 剧情 / 弗兰克·德拉邦特 / 蒂姆·罗宾斯 摩根·弗里曼" />
 
         <androidx.constraintlayout.widget.Guideline
