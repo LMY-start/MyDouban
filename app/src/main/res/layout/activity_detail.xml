@@ -46,7 +46,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp" />
 
-        <include layout="@layout/detail_online_plays" />
+        <include layout="@layout/detail_online_plays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tagListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
