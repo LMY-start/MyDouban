@@ -75,7 +75,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="8dp"
                 android:text="@string/detail_summary"
-                android:textSize="18sp"
+                android:textSize="@dimen/detail_title_font"
                 android:textStyle="bold" />
 
             <cn.carbs.android.expandabletextview.library.ExpandableTextView
@@ -89,6 +89,25 @@
                 app:etv_ToExpandHintColor="@color/grayBlack"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="8dp"
+                android:text="@string/detail_casts"
+                android:textSize="@dimen/detail_title_font"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/castListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
 
         </LinearLayout>
 

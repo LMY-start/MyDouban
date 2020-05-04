@@ -13,6 +13,7 @@ object MoviePosterAdapter {
     @JvmStatic
     @BindingAdapter("poster")
     fun loadMoviePoster(imageView: ImageView, url: String?) {
+        //        todo: add placeHolder & error image
         if (url != null) {
             Glide.with(imageView.context)
                 .load(url)

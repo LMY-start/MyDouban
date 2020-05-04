@@ -1,4 +1,4 @@
-package com.example.mydouban.ui.detail
+package com.example.mydouban.ui.detail.adapter
 
 import android.content.Context
 import android.graphics.Color
