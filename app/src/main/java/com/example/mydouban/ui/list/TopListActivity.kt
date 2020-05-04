@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.mydouban.R
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
@@ -29,7 +31,26 @@ class TopListActivity : AppCompatActivity() {
         }
         addAppBarOffsetChangListener()
         getMovieTop250()
+        setRecycle()
+    }
+
+    private fun setRecycle() {
         top_250_recycle.layoutManager = LinearLayoutManager(this)
+        adapter.setOnItemClickListener(object : TopListAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, position: Int) {
+                Toast.makeText(this@TopListActivity, "click $position item", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun onItemClickWantWatch(view: View?, position: Int) {
+                Toast.makeText(
+                    this@TopListActivity, "click $position item want watch ",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+
+        (top_250_recycle.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         top_250_recycle.adapter = adapter
     }
 
