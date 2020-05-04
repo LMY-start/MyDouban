@@ -1,5 +1,6 @@
 package com.example.mydouban.ui.detail
 
+import android.content.Context
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
 
 
-class TagsAdapter(private var tags: List<String>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TagsAdapter(private var tags: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private lateinit var context: Context
+
     companion object {
         const val HEADER_TYPE = 0
         const val ITEM_TYPE = 1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        context = parent.context
         return when (viewType) {
             HEADER_TYPE ->
-                TagHeaderViewHolder(TextView(parent.context))
+                TagHeaderViewHolder(TextView(context))
 
             else ->
-                TagViewHolder(TextView(parent.context))
+                TagViewHolder(TextView(context))
         }
     }
 
@@ -33,7 +36,7 @@ class TagsAdapter(private var tags: List<String>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             HEADER_TYPE -> {
-                (holder as TagHeaderViewHolder).textView.text = "相关分类"
+                (holder as TagHeaderViewHolder).textView.text = context.getString(R.string.detail_tags_title)
             }
             ITEM_TYPE -> {
                 (holder as TagViewHolder).textView.text = tags[position - 1]

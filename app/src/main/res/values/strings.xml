@@ -8,10 +8,14 @@
     <string name="douban_rating">豆瓣评分</string>
 
     <string name="detail_collect_btn">看过</string>
-    <string name="detail_app_bar">movie</string>
+    <string name="detail_app_bar">电影</string>
     <string name="detail_play_icon">detail play icon</string>
-    <string name="detail_online_play">在线播放</string>
+    <string name="detail_online_play">在线观看</string>
     <string name="detail_wish_btn">想看</string>
+    <string name="detail_tags_title">相关分类</string>
+    <string name="detail_summary">简介</string>
+    <string name="detail_summary_expand_hint">展开</string>
+
     <string name="list_title">豆瓣电影 Top250</string>
     <string name="list_top250_text">豆瓣电影 Top250</string>
     <string name="list_top250_content">250个内容 33.4万人关注</string>
