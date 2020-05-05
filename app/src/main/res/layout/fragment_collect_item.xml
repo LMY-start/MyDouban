@@ -48,10 +48,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:numStars="5"
-            android:rating="@{collect.average}"
+            android:progressTint="@color/rateBar"
+            android:rating="@{collect.average / 2F}"
             android:stepSize="0.05"
             app:layout_constraintStart_toStartOf="@+id/movie_title"
             app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+
+        <TextView
+            android:id="@+id/top_list_rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{String.valueOf(collect.average)}"
+            android:textColor="@color/gold"
+            android:textSize="@dimen/font_middle"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/movie_rating"
+            app:layout_constraintTop_toBottomOf="@id/movie_title"
+            tools:text="5.7" />
 
         <TextView
             android:id="@+id/description"

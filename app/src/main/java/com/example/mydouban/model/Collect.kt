@@ -2,7 +2,7 @@ package com.example.mydouban.model
 
 data class Collect(
 
-    val id: Int,
+    val id: Long,
     val title: String?,
     val image: String?,
     val year: Int?,

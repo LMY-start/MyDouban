@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mydouban.R
+import kotlinx.android.synthetic.main.fragment_collect.*
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class CollectFragment : Fragment() {
 
@@ -27,8 +30,14 @@ class CollectFragment : Fragment() {
         collectViewModel.collectList.observe(viewLifecycleOwner, Observer { collects ->
             adapter.updateData(collects)
         })
-//        collectViewModel.getAllCollect()
+        collectViewModel.getAllCollect()
         return root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        collect_list.layoutManager = GridLayoutManager(this.context,1)
+        collect_list.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
