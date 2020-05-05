@@ -1,13 +1,16 @@
 package com.example.mydouban.ui.collect
 
-import androidx.lifecycle.LiveData
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.mydouban.model.Collect
 
-class CollectViewModel : ViewModel() {
+class CollectViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "这是电影收藏页面"
+    val collectList = MutableLiveData<List<Collect>>()
+
+    fun getAllCollect() {
+//        val all = AppDatabase.getInstance(getApplication()).collectDao().getAll()
+//        collectList.postValue(all)
     }
-    val text: LiveData<String> = _text
 }

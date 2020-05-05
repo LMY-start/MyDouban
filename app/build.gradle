@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 29
@@ -36,8 +37,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    greendao {
+
+        schemaVersion 1
+        daoPackage 'com.example.mydouban.repository.local.greendao'
+        targetGenDir 'src/main/java'
     }
 
 }
@@ -65,8 +74,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation "androidx.room:room-runtime:2.2.5"
-    annotationProcessor 'androidx.room:room-compiler:2.2.5'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'org.greenrobot:greendao:3.2.2'
 
 }

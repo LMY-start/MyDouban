@@ -16,6 +16,7 @@
     <string name="director">导演</string>
     <string name="cast">演员</string>
     <string name="like">like</string>
+    <string name="operate_del_btn">删除</string>
 
     <string name="detail_collect_btn">看过</string>
     <string name="detail_app_bar">电影</string>
