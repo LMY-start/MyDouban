@@ -12,6 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detailHeaderView"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -32,7 +34,7 @@
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/titleView"
+            android:id="@+id/detailTitleView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -53,9 +55,9 @@
             android:text="@{detail.originalTitle}"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/titleView"
-            app:layout_constraintStart_toStartOf="@+id/titleView"
-            app:layout_constraintTop_toBottomOf="@+id/titleView"
+            app:layout_constraintEnd_toEndOf="@id/detailTitleView"
+            app:layout_constraintStart_toStartOf="@+id/detailTitleView"
+            app:layout_constraintTop_toBottomOf="@+id/detailTitleView"
             tools:text="2001: A Space Odyssey (1968)" />
 
         <TextView
@@ -67,8 +69,8 @@
             android:maxLines="2"
             android:text="@{detail.basicInfo}"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@id/titleView"
-            app:layout_constraintStart_toStartOf="@+id/titleView"
+            app:layout_constraintEnd_toEndOf="@id/detailTitleView"
+            app:layout_constraintStart_toStartOf="@+id/detailTitleView"
             app:layout_constraintTop_toBottomOf="@+id/originalTitleView"
             tools:text="英国 / 科幻 惊悚 冒险 / 上映时间：1968-04-02(华盛顿首映) / 片长：149分钟" />
 
@@ -78,8 +80,8 @@
             android:layout_marginTop="8dp"
             android:baselineAligned="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/titleView"
-            app:layout_constraintStart_toStartOf="@+id/titleView"
+            app:layout_constraintEnd_toEndOf="@id/detailTitleView"
+            app:layout_constraintStart_toStartOf="@+id/detailTitleView"
             app:layout_constraintTop_toBottomOf="@+id/basicInfoVoew"
             app:layout_constraintVertical_bias="0.0">
 

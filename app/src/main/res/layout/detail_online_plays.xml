@@ -13,7 +13,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detailOnlinePlays"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:id="@+id/detailPlayIcon"
@@ -31,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/detail_online_play"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
             app:layout_constraintStart_toEndOf="@+id/detailPlayIcon"
@@ -80,7 +83,6 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:background="@android:color/darker_gray"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
