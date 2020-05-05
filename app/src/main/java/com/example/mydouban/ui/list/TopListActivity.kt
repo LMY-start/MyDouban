@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.mydouban.R
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
@@ -50,8 +50,8 @@ class TopListActivity : AppCompatActivity() {
             }
         })
 
-        (top_250_recycle.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         top_250_recycle.adapter = adapter
+        top_250_recycle.addItemDecoration( DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     private fun getMovieTop250() {
