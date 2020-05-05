@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.mydouban.common.update
 import com.example.mydouban.model.MovieSubject
 import com.example.mydouban.model.MovieSubjectDetail
 import com.example.mydouban.repository.MovieTopRepository
@@ -21,7 +22,7 @@ class TopListViewModel(application: Application) : AndroidViewModel(application)
                 ranking++
                 repository.getMovieSubjectDetail(subject.id) { movieSubjectDetail ->
                     val singleList = updateData(subjects, movieSubjectDetail)
-                    movieSubjectsTop250.postValue(singleList)
+                    movieSubjectsTop250.update(singleList)
                 }
             }
             movieSubjectsTop250.postValue(subjects)
