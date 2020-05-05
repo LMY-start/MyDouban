@@ -41,12 +41,13 @@ class MovieTopRepository {
 
 
     fun getMovieSubjectDetail(
-        movieSubjectId: String, onSuccess: (movieSubjectDetail:MovieSubjectDetail) -> Unit
+        movieSubjectId: String, onSuccess: (movieSubjectDetail: MovieSubjectDetail) -> Unit
     ) {
         OkHttpUtils.get().url(String.format(SUBJECT_DETAIL_URL, movieSubjectId)).build()
             .execute(object : StringCallback() {
                 override fun onResponse(response: String?, id: Int) {
                     val movieSubjectDetail = MovieSubjectDetail(GsonUtil.parseJson(response))
+                    println("getMovieSubjectDetail=========== ${movieSubjectDetail.title}  ${movieSubjectDetail.photos} ${movieSubjectDetail.countries}")
                     onSuccess(movieSubjectDetail)
                 }
 

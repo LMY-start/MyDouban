@@ -45,7 +45,7 @@ class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>(
         }
 
         holder.itemView.findViewById<ViewGroup>(R.id.btn_want_watch).setOnClickListener {
-            onItemClickListener ?.let {
+            onItemClickListener?.let {
                 onItemClickListener!!.onItemClickWantWatch(holder.itemView, holder.layoutPosition)
             }
         }
@@ -53,10 +53,27 @@ class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>(
         holder.bind(movies[position])
     }
 
-    fun updateData(newMovies: List<MovieSubject>) {
-        movies.clear()
-        movies.addAll(newMovies)
-        notifyDataSetChanged()
+    fun updateData(newMovieSubjects: List<MovieSubject>) {
+        val newMovies = mutableListOf<MovieSubject>()
+        newMovies.addAll(newMovieSubjects)
+        if (newMovies.size > 1) {
+            movies.clear()
+            movies.addAll(newMovies)
+            notifyDataSetChanged()
+        } else {
+            val newMovie = newMovies[0]
+            var index = 0
+            while (index < movies.size) {
+                if (movies[index].id == newMovie.id) break
+                index++
+            }
+            if (index < movies.size) {
+                movies[index] = newMovie
+                val movie = movies[index]
+                println("+++++++++++++++updateData2  ${movie.title} ranking=${newMovies[0].ranking} ${movie.photos.size} , ${newMovie.photos.size}  ${movie.describe}")
+            }
+            notifyItemChanged(index)
+        }
     }
 
     inner class TopListViewHolder(private val dataBinding: TopListRecycleItemBinding) :

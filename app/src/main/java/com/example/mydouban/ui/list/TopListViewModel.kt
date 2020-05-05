@@ -15,26 +15,29 @@ class TopListViewModel(application: Application) : AndroidViewModel(application)
 
     fun getMovieTop250(activity: Activity) {
         repository.getMovieTop250(activity) { subjects ->
+            var ranking = 1
             for (subject in subjects) {
+                subject.ranking = subject.start + ranking
+                ranking++
                 repository.getMovieSubjectDetail(subject.id) { movieSubjectDetail ->
-                    updateData(subjects, movieSubjectDetail)
-                    movieSubjectsTop250.postValue(subjects)
+                    val singleList = updateData(subjects, movieSubjectDetail)
+                    movieSubjectsTop250.postValue(singleList)
                 }
             }
+            movieSubjectsTop250.postValue(subjects)
         }
     }
 
-    private fun updateData(subjects: List<MovieSubject>, newMovie: MovieSubjectDetail) {
-        var i = 0
-        while (i < subjects.size) {
-            if (subjects[i].id == newMovie.id) break else i++
+    private fun updateData(
+        subjects: List<MovieSubject>,
+        newMovie: MovieSubjectDetail
+    ): List<MovieSubject> {
+        val movieSubject = subjects.first { it.id == newMovie.id }
+        movieSubject.let {
+            it.photos.clear()
+            it.photos.addAll(newMovie.photos)
+            it.describe = newMovie.describe
         }
-        if (i < subjects.size) {
-            val movie = subjects[i]
-            movie.photos.clear()
-            movie.photos.addAll(newMovie.photos)
-            movie.describe = newMovie.describe
-            movie.ranking = movie.start+i+1
-        }
+        return listOf(movieSubject)
     }
 }
