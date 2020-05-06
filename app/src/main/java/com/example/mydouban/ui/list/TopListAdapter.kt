@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.*
 import com.example.mydouban.R
 import com.example.mydouban.databinding.TopListRecycleItemBinding
 import com.example.mydouban.model.MovieSubject
 
 
-class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>() {
+class TopListAdapter() : Adapter<TopListAdapter.TopListViewHolder>() {
 
     private val movies: MutableList<MovieSubject> = mutableListOf()
     private var onItemClickListener: OnItemClickListener? = null
@@ -35,6 +37,19 @@ class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>(
         )
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.addOnScrollListener(object : OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState);
+                val linearManager = (recyclerView.layoutManager as LinearLayoutManager)
+                val lastItemPosition = linearManager.findLastVisibleItemPosition()
+                val firstItemPosition = linearManager.findFirstVisibleItemPosition()
+                println("get onScrollStateChanged ++++++++++++++++++    $lastItemPosition , $firstItemPosition")
+            }
+           }
+        )
+    }
+
     override fun getItemCount() = movies.size
 
     override fun onBindViewHolder(holder: TopListViewHolder, position: Int) {
@@ -46,7 +61,10 @@ class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>(
 
         holder.itemView.findViewById<ViewGroup>(R.id.btn_want_watch).setOnClickListener {
             onItemClickListener?.let {
-                onItemClickListener!!.onItemClickWantWatch(holder.itemView, holder.layoutPosition)
+                onItemClickListener!!.onItemClickWantWatch(
+                    holder.itemView,
+                    holder.layoutPosition
+                )
             }
         }
 
@@ -77,7 +95,7 @@ class TopListAdapter() : RecyclerView.Adapter<TopListAdapter.TopListViewHolder>(
     }
 
     inner class TopListViewHolder(private val dataBinding: TopListRecycleItemBinding) :
-        RecyclerView.ViewHolder(dataBinding.root) {
+        ViewHolder(dataBinding.root) {
         fun bind(movie: MovieSubject) {
             println("TopListViewHolder bind  ${movie.title}  ${movie.ranking}  ${movie.photos}")
             dataBinding.movieSubject = movie

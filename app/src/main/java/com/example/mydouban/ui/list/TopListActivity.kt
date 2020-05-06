@@ -51,7 +51,7 @@ class TopListActivity : AppCompatActivity() {
         })
 
         top_250_recycle.adapter = adapter
-        top_250_recycle.addItemDecoration( DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        top_250_recycle.addItemDecoration( DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
     private fun getMovieTop250() {
