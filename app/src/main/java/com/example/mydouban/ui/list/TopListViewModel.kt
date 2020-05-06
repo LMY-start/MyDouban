@@ -7,12 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import com.example.mydouban.common.update
 import com.example.mydouban.model.MovieSubject
 import com.example.mydouban.model.MovieSubjectDetail
-import com.example.mydouban.repository.MovieTopRepository
+import com.example.mydouban.repository.remote.MovieRepository
 
 class TopListViewModel(application: Application) : AndroidViewModel(application) {
 
     val movieSubjectsTop250 = MutableLiveData<List<MovieSubject>>()
-    private val repository = MovieTopRepository()
+    private val repository = MovieRepository()
 
     fun getMovieTop250(activity: Activity) {
         repository.getMovieTop250(activity) { subjects ->

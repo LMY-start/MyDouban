@@ -1,4 +1,4 @@
-package com.example.mydouban.database.storage
+package com.example.mydouban.repository.local
 
 import android.app.Activity
 import android.content.Context

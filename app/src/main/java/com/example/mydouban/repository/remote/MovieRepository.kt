@@ -1,8 +1,8 @@
-package com.example.mydouban.repository
+package com.example.mydouban.repository.remote
 
 import android.app.Activity
 import com.example.mydouban.common.GsonUtil
-import com.example.mydouban.database.storage.FileStorage
+import com.example.mydouban.repository.local.FileStorage
 import com.example.mydouban.model.*
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
@@ -11,7 +11,7 @@ import com.zhy.http.okhttp.callback.StringCallback
 import okhttp3.Call
 import java.io.File
 
-class MovieTopRepository {
+class MovieRepository {
     companion object {
         private const val TOP_250_URL =
             "https://api.douban.com/v2/movie/top250?apikey=0b2bdeda43b5688921839c8ecb20399b"
