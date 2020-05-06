@@ -16,4 +16,5 @@
     <dimen name="detail_play_icon_small">16dp</dimen>
     <dimen name="detail_title_font">18sp</dimen>
     <dimen name="detail_cast_width">100dp</dimen>
+    <dimen name="detail_cast_height">150dp</dimen>
 </resources>

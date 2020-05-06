@@ -32,4 +32,12 @@ object DetailImageViewAttrAdapter {
             .error(R.mipmap.ic_launcher)
             .into(imageView)
     }
+
+    fun loadVideoSourcePic(imageView: ImageView, url: String?) {
+        Glide.with(imageView.context)
+            .load(url)
+            .placeholder(R.drawable.ic_detail_play)
+            .error(R.drawable.ic_detail_play)
+            .into(imageView)
+    }
 }

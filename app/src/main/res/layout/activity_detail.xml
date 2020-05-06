@@ -56,6 +56,8 @@
                 android:layout_marginBottom="@dimen/activity_horizontal_margin" />
 
             <include
+                android:id="@+id/detailOnlinePlays"
+                android:visibility="gone"
                 layout="@layout/detail_online_plays"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,6 +66,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tagListView"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"

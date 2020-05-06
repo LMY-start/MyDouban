@@ -3,18 +3,14 @@ package com.example.mydouban.ui.detail.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailCastBinding
 import com.example.mydouban.model.Cast
 
-class CastsAdapter(
-    private var directors: List<Cast>,
-    private var casts: List<Cast>
-) : RecyclerView.Adapter<CastsAdapter.CastViewHolder>() {
-    private val allCasts = listOf<Cast>().plus(directors).plus(casts)
+class CastsAdapter(private var casts: MutableList<Cast>) :
+    RecyclerView.Adapter<CastsAdapter.CastViewHolder>() {
     private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastsAdapter.CastViewHolder {
@@ -30,22 +26,17 @@ class CastsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return directors.size + casts.size
+        return casts.size
     }
 
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(casts[position])
     }
 
     inner class CastViewHolder(val databinding: DetailCastBinding) :
         RecyclerView.ViewHolder(databinding.root) {
-        fun bind(position: Int) {
-            databinding.cast = allCasts[position]
-
-            val castRoleView = itemView.findViewById<TextView>(R.id.castRole)
-            castRoleView.text =
-                if (position < directors.size) context.getString(R.string.director)
-                else context.getString(R.string.cast)
+        fun bind(cast: Cast) {
+            databinding.cast = cast
         }
     }
 }

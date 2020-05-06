@@ -10,13 +10,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailHeaderBinding
 import com.example.mydouban.databinding.DetailRatingBinding
-import com.example.mydouban.model.*
+import com.example.mydouban.model.Cast
+import com.example.mydouban.model.MovieDetailDto
+import com.example.mydouban.model.PopularComment
 import com.example.mydouban.ui.detail.adapter.CastsAdapter
 import com.example.mydouban.ui.detail.adapter.CommentsAdapter
+import com.example.mydouban.ui.detail.adapter.DetailImageViewAttrAdapter
 import com.example.mydouban.ui.detail.adapter.TagsAdapter
 import com.example.mydouban.viewModel.DetailViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -26,9 +28,15 @@ import kotlinx.android.synthetic.main.detail_rating.*
 
 class DetailActivity : AppCompatActivity() {
 
+    private val headerBinding by lazy { DataBindingUtil.bind<DetailHeaderBinding>(detailHeaderView) }
+    private val ratingBinding by lazy {
+        DataBindingUtil.bind<DetailRatingBinding>(movieDetailRatingView)
+    }
     private val detailViewModel by lazy { DetailViewModel(this.application) }
+
     private val horizontalLinearLayoutManager
         get() = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
     private var movieTitle: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,70 +47,57 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getMovieDetail() {
-        detailViewModel.detailLiveData.observe(this, Observer { detailDto ->
-            bindHeader(detailDto)
-            bindRating(detailDto)
-            renderVideos(detailDto)
-            bindTags(detailDto)
-            bindCasts(detailDto.directors, detailDto.casts)
-            bindComments(detailDto.popularComments)
+        detailViewModel.detailLiveData.observe(this, Observer { detail ->
+            movieTitle = detail.title
+            summary.text = detail.summary
+            headerBinding?.detail = detail
+            ratingBinding?.ratingDetail = detail.ratingDetail
 
-            movieTitle = detailDto.title
-            summary.text = detailDto.summary
+            renderVideos(detail.videos)
+            bindTags(detail.tags)
+            bindCasts(detail.casts)
+            bindComments(detail.comments)
+
         })
+
         detailViewModel.getMovieDetail("1292226")
     }
 
-    private fun bindTags(detailDto: MovieDetailDto) {
-        tagListView.layoutManager = horizontalLinearLayoutManager
-        tagListView.adapter =
-            TagsAdapter(detailDto.tags)
-    }
-
-    private fun renderVideos(detailDto: MovieDetailDto) = if (detailDto.videos.isNotEmpty()) {
-        for (video: MovieDetailDto.Video in detailDto.videos) {
-            val imageView = ImageView(this)
-
-            imageView.layoutParams = LinearLayout.LayoutParams(
-                resources.getDimension(R.dimen.detail_play_icon).toInt(),
-                resources.getDimension(R.dimen.detail_play_icon).toInt()
-            )
-            val lp = imageView.layoutParams as LinearLayout.LayoutParams
-            lp.marginStart = 16
-
-            Glide.with(this)
-                .load(video.source.pic)
-                .placeholder(R.drawable.ic_detail_play)
-                .error(R.drawable.ic_detail_play)
-                .into(imageView)
-            imageView.adjustViewBounds = true
-
-            playIconWrapper.addView(imageView)
+    private fun bindTags(tags: List<String>) {
+        if (tags.isNotEmpty()) {
+            tagListView.visibility = View.VISIBLE
+            tagListView.layoutManager = horizontalLinearLayoutManager
+            tagListView.adapter = TagsAdapter(tags)
         }
-    } else {
-        detailOnlinePlays.visibility = View.GONE
     }
 
-    private fun bindRating(detailDto: MovieDetailDto) {
-        val ratingBinding =
-            DataBindingUtil.bind<DetailRatingBinding>(movieDetailRatingView)
+    private fun renderVideos(videos: List<MovieDetailDto.Video>) {
+        if (videos.isNotEmpty()) {
+            detailOnlinePlays.visibility = View.VISIBLE
+            for (video: MovieDetailDto.Video in videos) {
+                renderVideoSourcePic(video.source.pic)
+            }
+        }
+    }
 
-        ratingBinding?.ratingDetail = RatingDetail(
-            detailDto.rating,
-            detailDto.wishCount,
-            detailDto.collectCount,
-            detailDto.ratingsCount
+    private fun renderVideoSourcePic(url: String) {
+        val imageView = ImageView(this)
+
+        imageView.layoutParams = LinearLayout.LayoutParams(
+            resources.getDimension(R.dimen.detail_play_icon).toInt(),
+            resources.getDimension(R.dimen.detail_play_icon).toInt()
         )
+        val lp = imageView.layoutParams as LinearLayout.LayoutParams
+        lp.marginStart = 16
+
+        DetailImageViewAttrAdapter.loadVideoSourcePic(imageView, url)
+
+        playIconWrapper.addView(imageView)
     }
 
-    private fun bindHeader(detailDto: MovieDetailDto) {
-        val headerBinding = DataBindingUtil.bind<DetailHeaderBinding>(detailHeaderView)
-        headerBinding?.detail = MovieDetail(detailDto)
-    }
-
-    private fun bindCasts(directors: List<Cast>, casts: List<Cast>) {
+    private fun bindCasts(casts: MutableList<Cast>) {
         castListView.layoutManager = horizontalLinearLayoutManager
-        castListView.adapter = CastsAdapter(directors, casts)
+        castListView.adapter = CastsAdapter(casts)
     }
 
     private fun bindComments(comments: List<PopularComment>) {

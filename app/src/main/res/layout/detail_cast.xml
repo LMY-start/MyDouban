@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/castAvatar"
             android:layout_width="@dimen/detail_cast_width"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/detail_cast_height"
             android:adjustViewBounds="true"
             android:contentDescription="@string/detail_cast_avatar"
             app:castAvatar="@{cast.avatars.large}"
@@ -47,6 +47,7 @@
             android:singleLine="true"
             android:textColor="@color/grey"
             android:textSize="12sp"
+            android:text="@{cast.role}"
             app:layout_constraintEnd_toEndOf="@+id/castName"
             app:layout_constraintStart_toStartOf="@+id/castName"
             app:layout_constraintTop_toBottomOf="@+id/castName"
