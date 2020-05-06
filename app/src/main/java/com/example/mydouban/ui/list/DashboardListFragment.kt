@@ -29,6 +29,10 @@ class DashboardListFragment : Fragment() {
         dashboardViewModel.movieSubjectsTop6.observe(viewLifecycleOwner, Observer { movies ->
             adapter.updateData(movies)
         })
+
+        dashboardViewModel.movieInTheater.observe(viewLifecycleOwner, Observer { movies ->
+//            adapter.updateData(movies)
+        })
         dashboardViewModel.getMovieTop6()
 
         return root

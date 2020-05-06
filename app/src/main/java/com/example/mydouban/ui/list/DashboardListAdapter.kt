@@ -11,8 +11,8 @@ import com.example.mydouban.model.MovieSubject
 class DashboardListAdapter :
     RecyclerView.Adapter<DashboardListAdapter.DashBoardListViewHolder>() {
 
-    private var tops: MutableList<MovieSubject> = mutableListOf()
-    private var inTheaters: MutableList<MovieSubject> = mutableListOf()
+    private var movieTop6: MutableList<MovieSubject> = mutableListOf()
+    private var movieInTheater: MutableList<MovieSubject> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashBoardListViewHolder {
         return DashBoardListViewHolder(
@@ -25,15 +25,15 @@ class DashboardListAdapter :
         )
     }
 
-    override fun getItemCount() = tops.size
+    override fun getItemCount() = movieTop6.size
 
     override fun onBindViewHolder(holder: DashBoardListViewHolder, position: Int) {
-        holder.bind(tops[position])
+        holder.bind(movieTop6[position])
     }
 
     fun updateData(newMovieSubjects: List<MovieSubject>) {
-        this.tops.clear()
-        this.tops.addAll(newMovieSubjects)
+        this.movieTop6.clear()
+        this.movieTop6.addAll(newMovieSubjects)
         notifyDataSetChanged()
     }
 

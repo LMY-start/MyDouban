@@ -1,6 +1,6 @@
 package com.example.mydouban.model
 
-data class MovieTopPageable(
+data class MoviePageable(
     val count: Int,
     val start: Int,
     val subjects: List<MovieSubjectDto>,
