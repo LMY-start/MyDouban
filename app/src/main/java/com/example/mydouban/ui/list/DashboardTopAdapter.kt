@@ -8,8 +8,8 @@ import com.example.mydouban.R
 import com.example.mydouban.databinding.TopDashboardItemBinding
 import com.example.mydouban.model.MovieSubject
 
-class DashboardListAdapter :
-    RecyclerView.Adapter<DashboardListAdapter.DashBoardListViewHolder>() {
+class DashboardTopAdapter :
+    RecyclerView.Adapter<DashboardTopAdapter.DashBoardListViewHolder>() {
 
     private var movieTop6: MutableList<MovieSubject> = mutableListOf()
     private var movieInTheater: MutableList<MovieSubject> = mutableListOf()

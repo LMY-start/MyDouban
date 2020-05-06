@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.list.DashboardListFragment">
@@ -13,8 +19,9 @@
         android:text="@string/list_douban_top"
         android:textColor="@color/deepBlack"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <Button
         android:id="@+id/btn_to_top_list"
@@ -22,28 +29,54 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="bottom|center_horizontal"
-        android:text="@string/to_top_lIst"
+        android:text="@string/dashboard_top_250"
         android:textColor="@color/deepBlack"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="@id/top_title"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dashboard_recycle"
+        android:id="@+id/dashboard_top_recycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline">
+        app:layout_constraintTop_toBottomOf="@+id/top_title">
     </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+
+    <TextView
+        android:id="@+id/in_theater_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="48dp" />
+        android:layout_marginTop="37dp"
+        android:text="@string/dashboard_in_theater"
+        android:textColor="@color/deepBlack"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_top_recycle" />
+
+    <Button
+        android:id="@+id/btn_to_movie_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="bottom|center_horizontal"
+        android:text="@string/dashboard_all_500"
+        android:textColor="@color/deepBlack"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/in_theater_title" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dashboard_in_theater_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/in_theater_title">
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

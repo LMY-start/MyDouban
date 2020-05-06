@@ -3,7 +3,7 @@
     <string name="title_list">列表</string>
     <string name="title_collect">收藏</string>
     <string name="movie_poster">movie poster</string>
-    <string name="to_top_lIst"><![CDATA[全部 250 >]]></string>
+    <string name="dashboard_top_250"><![CDATA[全部 250 >]]></string>
     <string name="list_douban_top">豆瓣榜单</string>
     <string name="douban_rating">豆瓣评分</string>
     <string name="list_title">豆瓣电影 Top250</string>
@@ -30,4 +30,6 @@
     <string name="detail_cast_avatar">detail cast avatar</string>
     <string name="detail_popular_comments">短评</string>
     <string name="detail_comments_author_avatar">detail comments author avatar</string>
+    <string name="dashboard_in_theater">正在热映</string>
+    <string name="dashboard_all_500"><![CDATA[全部 500 >]]></string>
 </resources>
