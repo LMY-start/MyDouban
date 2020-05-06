@@ -68,76 +68,6 @@
             app:srb_starSize="16dp"
             app:srb_starsSeparation="1dp" />
 
-        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-            android:id="@+id/simpleRatingBar5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/average"
-            app:srb_drawBorderEnabled="false"
-            app:srb_numberOfStars="5"
-            app:srb_isIndicator="true"
-            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
-            app:srb_starCornerRadius="0.0"
-            app:srb_starSize="@dimen/detail_rating_star_size_small"
-            app:srb_starsSeparation="0dp" />
-
-        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-            android:id="@+id/simpleRatingBar4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar5"
-            app:srb_drawBorderEnabled="false"
-            app:srb_isIndicator="true"
-            app:srb_numberOfStars="4"
-            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
-            app:srb_starCornerRadius="0.0"
-            app:srb_starSize="@dimen/detail_rating_star_size_small"
-            app:srb_starsSeparation="0dp" />
-
-        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-            android:id="@+id/simpleRatingBar3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar4"
-            app:srb_drawBorderEnabled="false"
-            app:srb_isIndicator="true"
-            app:srb_numberOfStars="3"
-            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
-            app:srb_starCornerRadius="0.0"
-            app:srb_starSize="@dimen/detail_rating_star_size_small"
-            app:srb_starsSeparation="0dp" />
-
-        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-            android:id="@+id/simpleRatingBar2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar3"
-            app:srb_drawBorderEnabled="false"
-            app:srb_isIndicator="true"
-            app:srb_numberOfStars="2"
-            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
-            app:srb_starCornerRadius="0.0"
-            app:srb_starSize="@dimen/detail_rating_star_size_small"
-            app:srb_starsSeparation="0dp" />
-
-        <com.iarcuschin.simpleratingbar.SimpleRatingBar
-            android:id="@+id/simpleRatingBar1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/simpleRatingBar2"
-            app:srb_drawBorderEnabled="false"
-            app:srb_isIndicator="true"
-            app:srb_numberOfStars="1"
-            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
-            app:srb_starCornerRadius="0.0"
-            app:srb_starSize="@dimen/detail_rating_star_size_small"
-            app:srb_starsSeparation="0dp" />
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
@@ -182,81 +112,72 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <ProgressBar
-            android:id="@+id/progressBar5"
-            style="@style/DetailRatingProgressHorizontal"
+        <com.example.mydouban.ui.detail.RatingProgressBar
+            android:id="@+id/ratingProgressBar5"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginEnd="48dp"
-            android:layout_marginBottom="1dp"
-            android:max="@{ratingDetail.rating.details.total}"
-            android:progress="@{ratingDetail.rating.details.get5()}"
-            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toTopOf="@id/simpleRatingBar5" />
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/average"
+            app:maxProgress="@{ratingDetail.rating.details.total}"
+            app:maxStar="5"
+            app:numStars="5"
+            app:progress="@{ratingDetail.rating.details.get5()}"
+            app:starSize="@dimen/detail_rating_star_size_small" />
 
-        <ProgressBar
-            android:id="@+id/progressBar4"
-            style="@style/DetailRatingProgressHorizontal"
+        <com.example.mydouban.ui.detail.RatingProgressBar
+            android:id="@+id/ratingProgressBar4"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:max="@{ratingDetail.rating.details.total}"
-            android:progress="@{ratingDetail.rating.details.get4()}"
-            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar4"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toTopOf="@id/simpleRatingBar4" />
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/ratingProgressBar5"
+            app:layout_constraintStart_toStartOf="@+id/ratingProgressBar5"
+            app:layout_constraintTop_toBottomOf="@+id/ratingProgressBar5"
+            app:maxProgress="@{ratingDetail.rating.details.total}"
+            app:maxStar="5"
+            app:numStars="4"
+            app:progress="@{ratingDetail.rating.details.get4()}"
+            app:starSize="@dimen/detail_rating_star_size_small" />
 
-        <ProgressBar
-            android:id="@+id/progressBar3"
-            style="@style/DetailRatingProgressHorizontal"
+        <com.example.mydouban.ui.detail.RatingProgressBar
+            android:id="@+id/ratingProgressBar3"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:max="@{ratingDetail.rating.details.total}"
-            android:progress="@{ratingDetail.rating.details.get3()}"
-            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar3"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toTopOf="@id/simpleRatingBar3" />
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/ratingProgressBar5"
+            app:layout_constraintStart_toStartOf="@+id/ratingProgressBar5"
+            app:layout_constraintTop_toBottomOf="@+id/ratingProgressBar4"
+            app:maxProgress="@{ratingDetail.rating.details.total}"
+            app:maxStar="5"
+            app:numStars="3"
+            app:progress="@{ratingDetail.rating.details.get3()}"
+            app:starSize="@dimen/detail_rating_star_size_small" />
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="@style/DetailRatingProgressHorizontal"
+        <com.example.mydouban.ui.detail.RatingProgressBar
+            android:id="@+id/ratingProgressBar2"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:max="@{ratingDetail.rating.details.total}"
-            android:progress="@{ratingDetail.rating.details.get2()}"
-            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar2"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toTopOf="@id/simpleRatingBar2" />
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/ratingProgressBar5"
+            app:layout_constraintStart_toStartOf="@+id/ratingProgressBar5"
+            app:layout_constraintTop_toBottomOf="@+id/ratingProgressBar3"
+            app:maxProgress="@{ratingDetail.rating.details.total}"
+            app:maxStar="5"
+            app:numStars="2"
+            app:progress="@{ratingDetail.rating.details.get2()}"
+            app:starSize="@dimen/detail_rating_star_size_small" />
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="@style/DetailRatingProgressHorizontal"
+        <com.example.mydouban.ui.detail.RatingProgressBar
+            android:id="@+id/ratingProgressBar1"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:max="@{ratingDetail.rating.details.total}"
-            android:progress="@{ratingDetail.rating.details.get1()}"
-            app:layout_constraintBottom_toBottomOf="@+id/simpleRatingBar1"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toTopOf="@id/simpleRatingBar1" />
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/ratingProgressBar5"
+            app:layout_constraintStart_toStartOf="@+id/ratingProgressBar5"
+            app:layout_constraintTop_toBottomOf="@+id/ratingProgressBar2"
+            app:maxProgress="@{ratingDetail.rating.details.total}"
+            app:maxStar="5"
+            app:numStars="1"
+            app:progress="@{ratingDetail.rating.details.get1()}"
+            app:starSize="@dimen/detail_rating_star_size_small" />
 
         <TextView
             android:id="@+id/textView5"
@@ -265,8 +186,9 @@
             android:layout_marginTop="2dp"
             android:text="@{ratingDetail.ratingsCountText}"
             android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar5"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar1"
+            app:layout_constraintEnd_toEndOf="@+id/ratingProgressBar5"
+            app:layout_constraintTop_toBottomOf="@+id/ratingProgressBar1"
             tools:text="195748人评分" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

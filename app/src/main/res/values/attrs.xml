@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RatingProgressBar">
+        <attr name="numStars" format="integer" />
+        <attr name="maxStar" format="integer" />
+        <attr name="maxProgress" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="starSize" format="dimension" />
+    </declare-styleable>
+</resources>
