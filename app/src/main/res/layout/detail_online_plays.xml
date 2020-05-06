@@ -1,94 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detailOnlinePlays"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin">
 
-    <data>
-
-        <variable
-            name="videos"
-            type="java.util.List&lt;com.example.mydouban.model.MovieDetailDto.Video&gt;" />
-    </data>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/detailOnlinePlays"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/detailPlayIcon"
+        android:layout_width="@dimen/detail_play_icon"
         android:layout_height="wrap_content"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin">
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/detail_play_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_detail_play" />
 
-        <ImageView
-            android:id="@+id/detailPlayIcon"
-            android:layout_width="@dimen/detail_play_icon"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/detail_play_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_detail_play" />
+    <TextView
+        android:id="@+id/detailOnlinePlayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/detail_online_play"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
+        app:layout_constraintStart_toEndOf="@+id/detailPlayIcon"
+        app:layout_constraintTop_toTopOf="@+id/detailPlayIcon" />
 
-        <TextView
-            android:id="@+id/detailOnlinePlayText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/detail_online_play"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
-            app:layout_constraintStart_toEndOf="@+id/detailPlayIcon"
-            app:layout_constraintTop_toTopOf="@+id/detailPlayIcon" />
+    <LinearLayout
+        android:id="@+id/playIconWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detailPlayIcon" />
 
-        <ImageView
-            android:id="@+id/detailPlayIcon1"
-            android:layout_width="@dimen/detail_play_icon"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/detail_play_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/detailPlayIcon"
-            app:playSource="@{videos.get(0).source.pic}"
-            app:srcCompat="@drawable/ic_detail_play" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailPlayIcon" />
 
-        <ImageView
-            android:id="@+id/detailPlayIcon2"
-            android:layout_width="@dimen/detail_play_icon"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/detail_play_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
-            app:layout_constraintEnd_toStartOf="@id/detailPlayIcon1"
-            app:layout_constraintTop_toTopOf="@+id/detailPlayIcon"
-            app:playSource="@{videos.get(1).source.pic}"
-            app:srcCompat="@drawable/ic_detail_play" />
-
-        <ImageView
-            android:id="@+id/detailPlayIcon3"
-            android:layout_width="@dimen/detail_play_icon"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/detail_play_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/detailPlayIcon"
-            app:layout_constraintEnd_toStartOf="@id/detailPlayIcon2"
-            app:layout_constraintTop_toTopOf="@+id/detailPlayIcon"
-            app:playSource="@{videos.get(2).source.pic}"
-            app:srcCompat="@drawable/ic_detail_play" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailPlayIcon"></LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

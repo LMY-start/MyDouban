@@ -2,15 +2,18 @@ package com.example.mydouban.ui.detail
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailHeaderBinding
-import com.example.mydouban.databinding.DetailOnlinePlaysBinding
 import com.example.mydouban.databinding.DetailRatingBinding
 import com.example.mydouban.model.*
 import com.example.mydouban.ui.detail.adapter.CastsAdapter
@@ -39,7 +42,7 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel.detailLiveData.observe(this, Observer { detailDto ->
             bindHeader(detailDto)
             bindRating(detailDto)
-            bindVideos(detailDto)
+            renderVideos(detailDto)
             bindTags(detailDto)
             bindCasts(detailDto.directors, detailDto.casts)
             bindComments(detailDto.popularComments)
@@ -56,14 +59,28 @@ class DetailActivity : AppCompatActivity() {
             TagsAdapter(detailDto.tags)
     }
 
-    private fun bindVideos(detailDto: MovieDetailDto) {
-        if (detailDto.videos.isNotEmpty()) {
-            val onlinePlaysBinding =
-                DataBindingUtil.bind<DetailOnlinePlaysBinding>(detailOnlinePlays)
-            onlinePlaysBinding?.videos = detailDto.videos
-        } else {
-            detailOnlinePlays.visibility = View.GONE
+    private fun renderVideos(detailDto: MovieDetailDto) = if (detailDto.videos.isNotEmpty()) {
+        for (video: MovieDetailDto.Video in detailDto.videos) {
+            val imageView = ImageView(this)
+            imageView.adjustViewBounds = true
+
+            imageView.layoutParams = LinearLayout.LayoutParams(
+                resources.getDimension(R.dimen.detail_play_icon).toInt(),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            val lp = imageView.layoutParams as LinearLayout.LayoutParams
+            lp.marginStart = 4
+
+            Glide.with(this)
+                .load(video.source.pic)
+                .placeholder(R.drawable.ic_detail_play)
+                .error(R.drawable.ic_detail_play)
+                .into(imageView)
+
+            playIconWrapper.addView(imageView)
         }
+    } else {
+        detailOnlinePlays.visibility = View.GONE
     }
 
     private fun bindRating(detailDto: MovieDetailDto) {
