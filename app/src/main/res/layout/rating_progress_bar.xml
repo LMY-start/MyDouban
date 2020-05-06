@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
+
     <com.iarcuschin.simpleratingbar.SimpleRatingBar
         android:id="@+id/rpg_ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srb_drawBorderEnabled="false"
-        app:srb_numberOfStars="5"
         app:srb_fillColor="@color/none"
-        app:srb_rating="5"
         app:srb_isIndicator="true"
-        app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+        app:srb_numberOfStars="5"
+        app:srb_rating="5"
+        app:srb_starBackgroundColor="@color/detailGreyLight"
         app:srb_starCornerRadius="0.0"
         app:srb_starSize="@dimen/detail_rating_star_size_small"
         app:srb_starsSeparation="0dp" />
+
     <ProgressBar
         android:id="@+id/rpg_progressBar"
         style="@style/DetailRatingProgressHorizontal"

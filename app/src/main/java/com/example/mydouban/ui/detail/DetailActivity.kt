@@ -2,7 +2,6 @@ package com.example.mydouban.ui.detail
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +27,8 @@ import kotlinx.android.synthetic.main.detail_rating.*
 class DetailActivity : AppCompatActivity() {
 
     private val detailViewModel by lazy { DetailViewModel(this.application) }
-    private val horizontalLinearLayoutManager get() = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    private val horizontalLinearLayoutManager
+        get() = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     private var movieTitle: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,20 +62,20 @@ class DetailActivity : AppCompatActivity() {
     private fun renderVideos(detailDto: MovieDetailDto) = if (detailDto.videos.isNotEmpty()) {
         for (video: MovieDetailDto.Video in detailDto.videos) {
             val imageView = ImageView(this)
-            imageView.adjustViewBounds = true
 
             imageView.layoutParams = LinearLayout.LayoutParams(
                 resources.getDimension(R.dimen.detail_play_icon).toInt(),
-                ViewGroup.LayoutParams.WRAP_CONTENT
+                resources.getDimension(R.dimen.detail_play_icon).toInt()
             )
             val lp = imageView.layoutParams as LinearLayout.LayoutParams
-            lp.marginStart = 4
+            lp.marginStart = 16
 
             Glide.with(this)
                 .load(video.source.pic)
                 .placeholder(R.drawable.ic_detail_play)
                 .error(R.drawable.ic_detail_play)
                 .into(imageView)
+            imageView.adjustViewBounds = true
 
             playIconWrapper.addView(imageView)
         }
@@ -108,7 +108,9 @@ class DetailActivity : AppCompatActivity() {
     private fun bindComments(comments: List<PopularComment>) {
         commentListView.layoutManager = LinearLayoutManager(this)
         commentListView.adapter = CommentsAdapter(comments)
-        commentListView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        commentListView.addItemDecoration(
+            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        )
     }
 
     private fun onScrollChangeListener() {

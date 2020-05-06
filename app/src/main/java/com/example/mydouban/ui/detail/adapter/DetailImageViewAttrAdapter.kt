@@ -9,17 +9,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.mydouban.R
 
 object DetailImageViewAttrAdapter {
-
-    @JvmStatic
-    @BindingAdapter("playSource")
-    fun loadPlaySource(imageView: ImageView, url: String?) {
-        Glide.with(imageView.context)
-            .load(url)
-            .placeholder(R.drawable.ic_detail_play)
-            .error(R.drawable.ic_detail_play)
-            .into(imageView)
-    }
-
     @JvmStatic
     @BindingAdapter("castAvatar")
     fun loadCastAvatar(imageView: ImageView, url: String?) {
