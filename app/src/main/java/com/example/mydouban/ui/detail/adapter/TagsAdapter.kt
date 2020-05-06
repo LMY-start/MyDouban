@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
 
-
-class TagsAdapter(private var tags: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TagsAdapter(private var tags: List<String>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var context: Context
 
     companion object {
@@ -36,7 +37,8 @@ class TagsAdapter(private var tags: List<String>) : RecyclerView.Adapter<Recycle
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             HEADER_TYPE -> {
-                (holder as TagHeaderViewHolder).textView.text = context.getString(R.string.detail_tags_title)
+                (holder as TagHeaderViewHolder).textView.text =
+                    context.getString(R.string.detail_tags_title)
             }
             ITEM_TYPE -> {
                 (holder as TagViewHolder).textView.text = tags[position - 1]
@@ -55,6 +57,7 @@ class TagsAdapter(private var tags: List<String>) : RecyclerView.Adapter<Recycle
         val textView: TextView = itemView as TextView
 
         init {
+            textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.grey))
             textView.setPadding(0, 10, 20, 10)
         }
     }

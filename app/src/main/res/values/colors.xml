@@ -6,9 +6,11 @@
     <color name="rateBar">#FF9800</color>
     <color name="deepBlack">#000000</color>
     <color name="movieName">#020202</color>
-    <color name="detailRatingStarBackgroundDark">#7B7B7B</color>
-    <color name="detailRatingProgressBackgroundDark">#DBDDE0</color>
     <color name="detailRatingProgress">#F4AE4B</color>
+    <color name="detailBackground">#9E9491</color>
+    <color name="detailBackgroundDark">#655D5B</color>
+    <color name="detailGreyLight">#B5B1AF</color>
+    <color name="detailGreyDark">#7B7379</color>
     <color name="grayBlack">#E10C0C0C</color>
     <color name="fullWhite">#FFFFFF</color>
     <color name="grey">#6AFFFFFF</color>

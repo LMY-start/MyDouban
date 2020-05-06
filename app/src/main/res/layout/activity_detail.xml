@@ -5,6 +5,7 @@
     android:id="@+id/detailLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/detailBackground"
     android:fitsSystemWindows="true"
     tools:context=".ui.detail.DetailActivity">
 
@@ -12,18 +13,20 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/detailBackground"
         android:fitsSystemWindows="true">
 
-        <TextView android:id="@+id/appBarTitle"
+        <TextView
+            android:id="@+id/appBarTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="@string/detail_app_bar"
-            android:textSize="20sp"></TextView>
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -35,8 +38,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_horizontal_margin">
 
             <include
                 layout="@layout/detail_header"
@@ -63,10 +66,10 @@
                 android:id="@+id/tagListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:clipToPadding="false"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+                android:paddingRight="@dimen/activity_horizontal_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,6 +78,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="8dp"
                 android:text="@string/detail_summary"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/detail_title_font"
                 android:textStyle="bold" />
 
@@ -82,22 +86,24 @@
                 android:id="@+id/summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textColor="@android:color/white"
+                app:etv_GapToExpandHint=" "
                 app:etv_MaxLinesOnShrink="4"
                 app:etv_ToExpandHint="@string/detail_summary_expand_hint"
-                app:etv_GapToExpandHint=" "
-                app:etv_ToShrinkHintShow="false"
-                app:etv_ToExpandHintColor="@color/grayBlack"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                app:etv_ToExpandHintColor="@color/grey"
+                app:etv_ToShrinkHintShow="false" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="8dp"
                 android:text="@string/detail_casts"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/detail_title_font"
                 android:textStyle="bold" />
 
@@ -105,19 +111,20 @@
                 android:id="@+id/castListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:clipToPadding="false"
                 android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="0dp"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+                android:paddingEnd="0dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="8dp"
                 android:text="@string/detail_popular_comments"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/detail_title_font"
                 android:textStyle="bold" />
 
@@ -125,10 +132,14 @@
                 android:id="@+id/commentListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:background="@drawable/round_corners_background"
+                android:backgroundTint="@color/detailBackgroundDark"
+                android:clipToPadding="false"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" />
 
         </LinearLayout>
 

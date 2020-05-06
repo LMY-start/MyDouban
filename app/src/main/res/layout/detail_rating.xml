@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_corners_background"
-        android:backgroundTint="@android:color/white">
+        android:backgroundTint="@color/detailBackgroundDark">
 
         <TextView
             android:id="@+id/ratingTitle"
@@ -24,6 +24,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/douban_rating"
+            android:textColor="@android:color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +44,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:text="@{String.valueOf(ratingDetail.rating.average)}"
+            android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -63,7 +65,7 @@
             app:srb_drawBorderEnabled="false"
             app:srb_fillColor="@color/detailRatingProgress"
             app:srb_isIndicator="true"
-            app:srb_starBackgroundColor="@color/detailRatingStarBackgroundDark"
+            app:srb_starBackgroundColor="@color/detailGreyDark"
             app:srb_starCornerRadius="0.0"
             app:srb_starSize="16dp"
             app:srb_starsSeparation="1dp" />
@@ -75,7 +77,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/detailGreyDark"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +90,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:text="@{ratingDetail.wishCountText}"
+            android:textColor="@color/detailGreyLight"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/ratingTitle"
@@ -100,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@{ratingDetail.collectCountText}"
+            android:textColor="@color/detailGreyLight"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/wishText"
             app:layout_constraintTop_toTopOf="@+id/wishText"
@@ -185,6 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@{ratingDetail.ratingsCountText}"
+            android:textColor="@color/detailGreyLight"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/ratingProgressBar5"
             app:layout_constraintTop_toBottomOf="@+id/ratingProgressBar1"

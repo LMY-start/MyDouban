@@ -12,10 +12,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detailHeaderView"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:id="@+id/posterView"
@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@{detail.title}"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{detail.originalTitle}"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/detailTitleView"
@@ -68,6 +70,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@{detail.basicInfo}"
+            android:textColor="@color/grey"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@id/detailTitleView"
             app:layout_constraintStart_toStartOf="@+id/detailTitleView"
@@ -115,7 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/wishBtnIcon"
-                    android:text="@string/detail_wish_btn" />
+                    android:text="@string/detail_wish_btn"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -148,7 +152,8 @@
                     android:layout_alignBaseline="@id/collectBtnIcon"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/collectBtnIcon"
-                    android:text="@string/detail_collect_btn" />
+                    android:text="@string/detail_collect_btn"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
         </LinearLayout>

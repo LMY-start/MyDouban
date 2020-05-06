@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@string/detail_cast_avatar"
+            app:castAvatar="@{cast.avatars.large}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            app:castAvatar="@{cast.avatars.large}"/>
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/castName"
@@ -33,6 +33,7 @@
             android:layout_marginTop="8dp"
             android:singleLine="true"
             android:text="@{cast.name}"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="@+id/castAvatar"
             app:layout_constraintStart_toStartOf="@+id/castAvatar"
             app:layout_constraintTop_toBottomOf="@+id/castAvatar"
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:singleLine="true"
+            android:textColor="@color/grey"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/castName"
             app:layout_constraintStart_toStartOf="@+id/castName"
