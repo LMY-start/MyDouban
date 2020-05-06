@@ -15,6 +15,10 @@ class FileStorage() {
             }
         }
 
+        fun isFileExits(activity: Activity, fileName: String):Boolean {
+            return activity.getFileStreamPath(fileName).exists()
+        }
+
 
         fun read(activity: Activity, fileName: String): String {
             val content = StringBuilder()

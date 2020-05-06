@@ -24,7 +24,7 @@ class MovieRepository {
     }
 
     fun getMovieTop250(activity: Activity, onSuccess: (subjects: List<MovieSubject>) -> Unit) {
-        if (File(FILE_MOVIE_TOP_250).exists()) {
+        if (FileStorage.isFileExits(activity, FILE_MOVIE_TOP_250)) {
             val readContent = FileStorage.read(activity, FILE_MOVIE_TOP_250)
             onSuccess(
                 GsonUtil.parseJson<MoviePageable>(readContent).subjects
