@@ -19,14 +19,16 @@
 
         <ImageView
             android:id="@+id/posterView"
-            android:layout_width="@dimen/movie_poster_width"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/movie_poster"
             android:scaleType="fitStart"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/originalTitleView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -37,14 +39,13 @@
             android:id="@+id/detailTitleView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="@{detail.title}"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/posterView"
+            app:layout_constraintStart_toEndOf="@id/guideline36"
             app:layout_constraintTop_toTopOf="@+id/posterView"
             tools:text="2001太空漫游" />
 
@@ -63,7 +64,7 @@
             tools:text="2001: A Space Odyssey (1968)" />
 
         <TextView
-            android:id="@+id/basicInfoVoew"
+            android:id="@+id/basicInfoView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -77,86 +78,96 @@
             app:layout_constraintTop_toBottomOf="@+id/originalTitleView"
             tools:text="英国 / 科幻 惊悚 冒险 / 上映时间：1968-04-02(华盛顿首映) / 片长：149分钟" />
 
-        <LinearLayout
+
+        <RelativeLayout
+            android:id="@+id/wish_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:baselineAligned="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/detailTitleView"
-            app:layout_constraintStart_toStartOf="@+id/detailTitleView"
-            app:layout_constraintTop_toBottomOf="@+id/basicInfoVoew"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners_background"
+            android:backgroundTint="@android:color/background_light"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline68"
+            app:layout_constraintStart_toEndOf="@id/guideline36"
+            app:layout_constraintTop_toBottomOf="@+id/basicInfoView">
 
-            <RelativeLayout
-                android:id="@+id/wish_btn"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/wishBtnIcon"
+                android:layout_width="@dimen/detail_collect_btn_icon_size"
+                android:layout_height="@dimen/detail_collect_btn_icon_size"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:contentDescription="@string/detail_wish_btn"
+                app:srcCompat="@drawable/ic_detail_wish" />
+
+            <TextView
+                android:id="@+id/wishBtnText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:background="@drawable/round_corners_background"
-                android:backgroundTint="@android:color/background_light"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingTop="10dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="10dp">
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/wishBtnIcon"
+                android:text="@string/detail_wish_btn"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/wishBtnIcon"
-                    android:layout_width="@dimen/detail_collect_btn_icon_size"
-                    android:layout_height="@dimen/detail_collect_btn_icon_size"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="5dp"
-                    android:contentDescription="@string/detail_wish_btn"
-                    app:srcCompat="@drawable/ic_detail_wish" />
+        <RelativeLayout
+            android:id="@+id/collect_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners_background"
+            android:backgroundTint="@android:color/background_light"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline68"
+            app:layout_constraintTop_toTopOf="@+id/wish_btn">
 
-                <TextView
-                    android:id="@+id/wishBtnText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/wishBtnIcon"
-                    android:text="@string/detail_wish_btn"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/collectBtnIcon"
+                android:layout_width="@dimen/detail_collect_btn_icon_size"
+                android:layout_height="@dimen/detail_collect_btn_icon_size"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:contentDescription="@string/detail_collect_btn"
+                app:srcCompat="@drawable/ic_detail_collect" />
 
-            <RelativeLayout
-                android:id="@+id/collect_btn"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/collectBtnText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/round_corners_background"
-                android:backgroundTint="@android:color/background_light"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingTop="10dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="10dp">
+                android:layout_alignBaseline="@id/collectBtnIcon"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/collectBtnIcon"
+                android:text="@string/detail_collect_btn"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/collectBtnIcon"
-                    android:layout_width="@dimen/detail_collect_btn_icon_size"
-                    android:layout_height="@dimen/detail_collect_btn_icon_size"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="5dp"
-                    android:contentDescription="@string/detail_collect_btn"
-                    app:srcCompat="@drawable/ic_detail_collect" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.36" />
 
-                <TextView
-                    android:id="@+id/collectBtnText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/collectBtnIcon"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/collectBtnIcon"
-                    android:text="@string/detail_collect_btn"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-        </LinearLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline68"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.68" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
