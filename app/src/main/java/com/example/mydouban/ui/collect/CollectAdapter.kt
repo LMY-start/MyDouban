@@ -21,7 +21,7 @@ class CollectAdapter :
     RecyclerView.Adapter<CollectAdapter.ViewHolder>() {
 
     private var collects: MutableList<Collect> = mutableListOf()
-    var reloadAllCollects: (() -> Unit)? = null
+    private var onItemClickListener: OnCollectItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -39,12 +39,13 @@ class CollectAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val operateBtn = holder.itemView.findViewById<ImageView>(R.id.operate_btn)
 
-        val itemMenu = getItemMenu(holder.itemView.context)
-        itemMenu.setOnMenuItemClickListener { _, _ ->
-            itemMenu.dismiss()
-            deleteSelectedItem(holder.itemView.context, position)
+        holder.itemView.setOnClickListener { _ ->
+            onItemClickListener?.let {
+                val id = collects[position].id
+                it.onItemClick(id) }
         }
 
+        val itemMenu = getItemMenu(holder.itemView.context, position)
         operateBtn.setOnClickListener {
             itemMenu.showAsAnchorLeftBottom(it)
         }
@@ -52,26 +53,38 @@ class CollectAdapter :
         holder.bind(collects[position])
     }
 
-    private fun getItemMenu(context: Context) = PowerMenu.Builder(context)
-        .addItem(PowerMenuItem("删除"))
-        .setAnimation(MenuAnimation.DROP_DOWN)
-        .setMenuRadius(10f)
-        .setMenuShadow(10f)
-        .setTextColor(ContextCompat.getColor(context, R.color.black))
-        .setTextTypeface(Typeface.DEFAULT)
-        .setShowBackground(false)
-        .build()
+    private fun getItemMenu(context: Context, position: Int): PowerMenu {
+        val powerMenu = PowerMenu.Builder(context)
+            .addItem(PowerMenuItem("删除"))
+            .setAnimation(MenuAnimation.DROP_DOWN)
+            .setMenuRadius(10f)
+            .setMenuShadow(10f)
+            .setTextColor(ContextCompat.getColor(context, R.color.black))
+            .setTextTypeface(Typeface.DEFAULT)
+            .setShowBackground(false)
+            .build()
+
+        powerMenu.setOnMenuItemClickListener { _, _ ->
+            powerMenu.dismiss()
+            deleteSelectedItem(context, position)
+        }
+        return powerMenu
+    }
 
     private fun deleteSelectedItem(context: Context, position: Int) {
         val id = collects[position].id
         CollectDaoOperation.getInstance().deleteByKeyData(context, id)
-        reloadAllCollects?.let { it() }
+        onItemClickListener?.let { it.onDeleteMenuClick() }
     }
 
     fun updateData(newData: List<Collect>) {
         this.collects.clear()
         this.collects.addAll(newData)
         notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnCollectItemClickListener) {
+        this.onItemClickListener = onItemClickListener
     }
 
     inner class ViewHolder(val dataBinding: FragmentCollectItemBinding) :

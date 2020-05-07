@@ -1,8 +1,8 @@
 package com.example.mydouban.ui.collect
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mydouban.R
+import com.example.mydouban.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_collect.*
 
 class CollectFragment : Fragment() {
@@ -36,20 +37,20 @@ class CollectFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         collect_list.layoutManager = GridLayoutManager(this.context, 1)
-        adapter.reloadAllCollects = {
-            collectViewModel.getAllCollect()
-        }
+        adapter.setOnItemClickListener(onItemClickListner)
         collect_list.adapter = adapter
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    private val onItemClickListner: OnCollectItemClickListener =
+        object : OnCollectItemClickListener {
+            override fun onItemClick(id: Long) {
+                val intent = Intent(this@CollectFragment.requireContext(), DetailActivity::class.java)
+                intent.putExtra("id", id.toString())
+                this@CollectFragment.startActivity(intent)
+            }
 
-        val id = item.itemId
-        if (id == R.id.collect_delete) {
-            //TODO 本地数据库删除（传递一个ID）
-            return true
+            override fun onDeleteMenuClick() {
+                collectViewModel.getAllCollect()
+            }
         }
-        return super.onOptionsItemSelected(item)
-    }
-
 }
