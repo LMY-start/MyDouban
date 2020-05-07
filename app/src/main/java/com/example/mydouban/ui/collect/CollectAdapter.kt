@@ -55,9 +55,14 @@ class CollectAdapter : RecyclerView.Adapter<CollectAdapter.ViewHolder>() {
             .setMenuShadow(10f)
             .setTextColor(ContextCompat.getColor(context, R.color.black))
             .setTextTypeface(Typeface.DEFAULT)
-            .setShowBackground(false)
+            .setShowBackground(true)
+            .setBackgroundColor(ContextCompat.getColor(context, R.color.none))
             .build()
 
+        powerMenu.setOnBackgroundClickListener {
+            powerMenu.dismiss()
+
+        }
         powerMenu.setOnMenuItemClickListener { _, _ ->
             powerMenu.dismiss()
             deleteSelectedItem(context, position)
