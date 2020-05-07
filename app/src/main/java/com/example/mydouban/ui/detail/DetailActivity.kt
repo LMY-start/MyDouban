@@ -15,7 +15,6 @@ import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailHeaderBinding
 import com.example.mydouban.databinding.DetailRatingBinding
 import com.example.mydouban.model.MovieDetail
-import com.example.mydouban.model.MovieDetailDto
 import com.example.mydouban.ui.detail.adapter.CastsAdapter
 import com.example.mydouban.ui.detail.adapter.CommentsAdapter
 import com.example.mydouban.ui.detail.adapter.DetailImageViewAttrAdapter
@@ -25,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.detail_header.*
 import kotlinx.android.synthetic.main.detail_online_plays.*
 import kotlinx.android.synthetic.main.detail_rating.*
+import kotlin.math.min
 
 class DetailActivity : AppCompatActivity() {
 
@@ -89,11 +89,13 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun renderVideos() {
-        if (detail.videos.isNotEmpty()) {
+        val videos = detail.videos
+        if (videos.isNotEmpty()) {
             detailOnlinePlays.visibility = View.VISIBLE
             playIconWrapper.removeAllViews()
-            for (video: MovieDetailDto.Video in detail.videos) {
-                renderVideoSourcePic(video.source.pic)
+            for (i in 0 until min(3, videos.size)) {
+                renderVideoSourcePic(videos[i].source.pic)
+
             }
         }
     }
