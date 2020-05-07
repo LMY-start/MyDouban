@@ -15,6 +15,7 @@ import com.example.mydouban.R
 import com.example.mydouban.model.MovieSubject
 import com.example.mydouban.repository.local.dao.CollectDaoOperation
 import com.example.mydouban.ui.detail.DetailActivity
+import com.gturedi.views.StatefulLayout
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 
@@ -32,7 +33,15 @@ class DashboardListFragment : Fragment() {
         dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val  dashboardStateView = root.findViewById<StatefulLayout>(R.id.dashboard_state_view)
+        dashboardStateView.showLoading(R.string.is_loading)
+        getMovieList()
+        return root
+    }
+
+    private fun getMovieList() {
         dashboardViewModel.movieSubjectsTop6.observe(viewLifecycleOwner, Observer { movies ->
+            dashboard_state_view.showContent()
             topAdapter.updateData(movies)
         })
 
@@ -41,12 +50,20 @@ class DashboardListFragment : Fragment() {
         })
         dashboardViewModel.getMovieTop6()
         dashboardViewModel.getMovieInTheater()
-
-        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initRecycle()
+        btn_to_top_list.setOnClickListener {
+            startActivity(Intent(this.requireContext(), TopListActivity::class.java))
+        }
+        btn_to_movie_list.setOnClickListener {
+            startActivity(Intent(this.requireContext(), TopListActivity::class.java))
+        }
+    }
+
+    private fun initRecycle() {
         dashboard_top_recycle.layoutManager = GridLayoutManager(this.context, 3)
         topAdapter.setOnItemClickListener(onItemClickListener)
         dashboard_top_recycle.adapter = topAdapter
@@ -56,13 +73,6 @@ class DashboardListFragment : Fragment() {
         dashboard_in_theater_recycle.layoutManager = linearLayoutManager
         inTheaterAdapter.setOnItemClickListener(onItemClickListener)
         dashboard_in_theater_recycle.adapter = inTheaterAdapter
-
-        btn_to_top_list.setOnClickListener {
-            startActivity(Intent(this.requireContext(), TopListActivity::class.java))
-        }
-        btn_to_movie_list.setOnClickListener {
-            startActivity(Intent(this.requireContext(), TopListActivity::class.java))
-        }
     }
 
     private val onItemClickListener: OnItemClickListener = object : OnItemClickListener {
