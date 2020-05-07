@@ -1,6 +1,5 @@
 package com.example.mydouban.ui.collect
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mydouban.R
-import com.example.mydouban.ui.detail.DetailActivity
 import com.example.mydouban.viewModel.CollectViewModel
 import kotlinx.android.synthetic.main.fragment_collect.*
 
@@ -42,17 +40,12 @@ class CollectFragment : Fragment() {
         adapter.setOnItemClickListener(onItemClickListener)
         collect_list.adapter = adapter
         collect_list.addItemDecoration(
-                DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
-            )
+            DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+        )
     }
 
     private val onItemClickListener: OnCollectItemClickListener =
         object : OnCollectItemClickListener {
-            override fun onItemClick(id: Long) {
-                val intent = Intent(this@CollectFragment.context, DetailActivity::class.java)
-                intent.putExtra("id", id.toString())
-                this@CollectFragment.startActivity(intent)
-            }
 
             override fun onDeleteMenuClick() {
                 collectViewModel.getAllCollect()

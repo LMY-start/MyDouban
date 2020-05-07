@@ -17,11 +17,11 @@ import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
 
-class CollectAdapter :
-    RecyclerView.Adapter<CollectAdapter.ViewHolder>() {
+class CollectAdapter : RecyclerView.Adapter<CollectAdapter.ViewHolder>() {
 
     private var collects: MutableList<Collect> = mutableListOf()
     private var onItemClickListener: OnCollectItemClickListener? = null
+    private val collectListener by lazy { CollectItemEventListener() }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -38,12 +38,6 @@ class CollectAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val operateBtn = holder.itemView.findViewById<ImageView>(R.id.operate_btn)
-
-        holder.itemView.setOnClickListener { _ ->
-            onItemClickListener?.let {
-                val id = collects[position].id
-                it.onItemClick(id) }
-        }
 
         val itemMenu = getItemMenu(holder.itemView.context, position)
         operateBtn.setOnClickListener {
@@ -92,6 +86,7 @@ class CollectAdapter :
         fun bind(collect: Collect) {
             Log.i("Collect-View-Bind", collect.toString())
             dataBinding.collect = collect
+            dataBinding.listener = collectListener
         }
     }
 

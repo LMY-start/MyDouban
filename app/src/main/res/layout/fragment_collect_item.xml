@@ -8,11 +8,17 @@
         <variable
             name="collect"
             type="com.example.mydouban.model.Collect" />
+
+        <variable
+            name="listener"
+            type="com.example.mydouban.ui.collect.CollectItemEventListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/collect_item"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:onClick="@{(view)->listener.onCollectItemClick(view,collect)}"
         android:padding="5dp">
 
         <ImageView
@@ -25,7 +31,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:poster="@{collect.image}"
             app:srcCompat="@mipmap/movie_selected" />
-
 
         <TextView
             android:id="@+id/movie_title"
