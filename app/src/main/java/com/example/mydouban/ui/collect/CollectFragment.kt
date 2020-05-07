@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mydouban.R
 import com.example.mydouban.ui.detail.DetailActivity
+import com.example.mydouban.viewModel.CollectViewModel
 import kotlinx.android.synthetic.main.fragment_collect.*
 
 class CollectFragment : Fragment() {

@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydouban.R
-import com.example.mydouban.common.ScreenUtils
 import com.example.mydouban.model.MovieSubject
 import com.example.mydouban.repository.local.dao.CollectDaoOperation
 import com.example.mydouban.ui.detail.DetailActivity
+import com.example.mydouban.viewModel.TopListViewModel
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
 import kotlinx.android.synthetic.main.top_list_recycle_scrolling.*

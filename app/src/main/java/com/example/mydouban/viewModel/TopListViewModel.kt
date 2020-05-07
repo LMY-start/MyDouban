@@ -1,4 +1,4 @@
-package com.example.mydouban.ui.list
+package com.example.mydouban.viewModel
 
 import android.app.Activity
 import android.app.Application
