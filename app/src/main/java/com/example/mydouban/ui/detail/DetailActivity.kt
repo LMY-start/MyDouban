@@ -15,7 +15,6 @@ import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailHeaderBinding
 import com.example.mydouban.databinding.DetailRatingBinding
 import com.example.mydouban.model.MovieDetail
-import com.example.mydouban.model.MovieDetailDto
 import com.example.mydouban.ui.detail.adapter.CastsAdapter
 import com.example.mydouban.ui.detail.adapter.CommentsAdapter
 import com.example.mydouban.ui.detail.adapter.DetailImageViewAttrAdapter
@@ -25,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.detail_header.*
 import kotlinx.android.synthetic.main.detail_online_plays.*
 import kotlinx.android.synthetic.main.detail_rating.*
+import kotlin.math.min
 
 class DetailActivity : AppCompatActivity() {
 
@@ -49,16 +49,17 @@ class DetailActivity : AppCompatActivity() {
 
         onScrollChangeListener()
         onWishBtnCLick()
+        onToolBarNavigationIconClick()
     }
 
     private fun loadDetail() {
-        stateView.showLoading(R.string.is_loading)
+        detailStateView.showLoading(R.string.is_loading)
         detailViewModel.getMovieDetail(intent.getStringExtra("id"))
     }
 
     private fun handelMovieDetailRes() {
         detailViewModel.detailLiveData.observe(this, Observer { detail ->
-            stateView.showContent()
+            detailStateView.showContent()
             this.detail = detail
             movieTitle = detail.title
             summary.text = detail.summary
@@ -73,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
         })
 
         detailViewModel.errorLiveData.observe(this, Observer { e ->
-            stateView.showError(R.string.is_failed) {
+            detailStateView.showError(R.string.is_failed) {
                 loadDetail()
             }
         })
@@ -88,11 +89,13 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun renderVideos() {
-        if (detail.videos.isNotEmpty()) {
+        val videos = detail.videos
+        if (videos.isNotEmpty()) {
             detailOnlinePlays.visibility = View.VISIBLE
             playIconWrapper.removeAllViews()
-            for (video: MovieDetailDto.Video in detail.videos) {
-                renderVideoSourcePic(video.source.pic)
+            for (i in 0 until min(3, videos.size)) {
+                renderVideoSourcePic(videos[i].source.pic)
+
             }
         }
     }
@@ -128,7 +131,7 @@ class DetailActivity : AppCompatActivity() {
     private fun onScrollChangeListener() {
         detailScrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
             val titleBottomPosition = detailTitleView.y + detailTitleView.height
-            appBarTitle.text =
+            detailToolbar.title =
                 if (scrollY >= titleBottomPosition) movieTitle else resources.getString(R.string.detail_app_bar)
         }
     }
@@ -147,6 +150,12 @@ class DetailActivity : AppCompatActivity() {
             wishBtnIcon.visibility = View.GONE
             wishBtnText.setTextColor(Color.WHITE)
             wishBtn.background.setTint(getColor(R.color.detailGreyLight))
+        }
+    }
+
+    private fun onToolBarNavigationIconClick() {
+        detailToolbar.setNavigationOnClickListener {
+            finish()
         }
     }
 }
