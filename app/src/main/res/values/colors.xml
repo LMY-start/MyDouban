@@ -16,4 +16,5 @@
     <color name="grey">#6AFFFFFF</color>
     <color name="gold">#e9b048</color>
     <color name="none">#00000000</color>
+    <color name="collectGrey">#E6E6E6</color>
 </resources>

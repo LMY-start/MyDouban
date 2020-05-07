@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mydouban.R
 import com.example.mydouban.ui.detail.DetailActivity
@@ -37,14 +38,17 @@ class CollectFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         collect_list.layoutManager = GridLayoutManager(this.context, 1)
-        adapter.setOnItemClickListener(onItemClickListner)
+        adapter.setOnItemClickListener(onItemClickListener)
         collect_list.adapter = adapter
+        collect_list.addItemDecoration(
+                DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL)
+            )
     }
 
-    private val onItemClickListner: OnCollectItemClickListener =
+    private val onItemClickListener: OnCollectItemClickListener =
         object : OnCollectItemClickListener {
             override fun onItemClick(id: Long) {
-                val intent = Intent(this@CollectFragment.requireContext(), DetailActivity::class.java)
+                val intent = Intent(this@CollectFragment.context, DetailActivity::class.java)
                 intent.putExtra("id", id.toString())
                 this@CollectFragment.startActivity(intent)
             }
