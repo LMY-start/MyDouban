@@ -12,6 +12,7 @@ import com.example.mydouban.repository.ResponseCallBack
 import com.example.mydouban.repository.local.dao.CollectDaoOperation
 import com.example.mydouban.repository.local.entity.Collect
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
@@ -68,7 +69,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
             genres,
             directors,
             casts,
-            Calendar.getInstance().get(Calendar.DAY_OF_YEAR).toString()
+            SimpleDateFormat("yyyy/MM/dd").format(Date())
         )
         collectDaoInstance.insertData(context, collect)
         detail.isCollected = true

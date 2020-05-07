@@ -49,16 +49,17 @@ class DetailActivity : AppCompatActivity() {
 
         onScrollChangeListener()
         onWishBtnCLick()
+        onToolBarNavigationIconClick()
     }
 
     private fun loadDetail() {
-        stateView.showLoading(R.string.is_loading)
+        detailStateView.showLoading(R.string.is_loading)
         detailViewModel.getMovieDetail(intent.getStringExtra("id"))
     }
 
     private fun handelMovieDetailRes() {
         detailViewModel.detailLiveData.observe(this, Observer { detail ->
-            stateView.showContent()
+            detailStateView.showContent()
             this.detail = detail
             movieTitle = detail.title
             summary.text = detail.summary
@@ -73,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
         })
 
         detailViewModel.errorLiveData.observe(this, Observer { e ->
-            stateView.showError(R.string.is_failed) {
+            detailStateView.showError(R.string.is_failed) {
                 loadDetail()
             }
         })
@@ -128,7 +129,7 @@ class DetailActivity : AppCompatActivity() {
     private fun onScrollChangeListener() {
         detailScrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
             val titleBottomPosition = detailTitleView.y + detailTitleView.height
-            appBarTitle.text =
+            detailToolbar.title =
                 if (scrollY >= titleBottomPosition) movieTitle else resources.getString(R.string.detail_app_bar)
         }
     }
@@ -147,6 +148,12 @@ class DetailActivity : AppCompatActivity() {
             wishBtnIcon.visibility = View.GONE
             wishBtnText.setTextColor(Color.WHITE)
             wishBtn.background.setTint(getColor(R.color.detailGreyLight))
+        }
+    }
+
+    private fun onToolBarNavigationIconClick() {
+        detailToolbar.setNavigationOnClickListener {
+            finish()
         }
     }
 }
