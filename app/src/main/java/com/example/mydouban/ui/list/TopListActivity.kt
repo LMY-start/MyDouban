@@ -1,16 +1,22 @@
 package com.example.mydouban.ui.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydouban.R
+import com.example.mydouban.common.ScreenUtils
+import com.example.mydouban.model.MovieSubject
+import com.example.mydouban.repository.local.dao.CollectDaoOperation
+import com.example.mydouban.ui.detail.DetailActivity
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
 import kotlinx.android.synthetic.main.top_list_recycle_scrolling.*
@@ -37,21 +43,43 @@ class TopListActivity : AppCompatActivity() {
     private fun setRecycle() {
         top_250_recycle.layoutManager = LinearLayoutManager(this)
         adapter.setOnItemClickListener(object : TopListAdapter.OnItemClickListener {
-            override fun onItemClick(view: View?, position: Int) {
-                Toast.makeText(this@TopListActivity, "click $position item", Toast.LENGTH_SHORT)
-                    .show()
+            override fun onItemClick(movieSubject: MovieSubject) {
+                Intent(this@TopListActivity, DetailActivity::class.java).also {
+                    it.putExtra("id", movieSubject.id)
+                    this@TopListActivity.startActivity(it)
+                }
             }
 
-            override fun onItemClickWantWatch(view: View?, position: Int) {
+            override fun onItemClickWantWatch(movieSubject: MovieSubject) {
+                CollectDaoOperation.getInstance()
+                    .insertData(this@TopListActivity, movieSubject.toCollect())
                 Toast.makeText(
-                    this@TopListActivity, "click $position item want watch ",
+                    this@TopListActivity, "收藏\"${movieSubject.title}\"成功",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         })
 
         top_250_recycle.adapter = adapter
-        top_250_recycle.addItemDecoration( DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        top_250_recycle.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        onScrollChangeListener()
+
+    }
+
+    private fun onScrollChangeListener() {
+        top_list_nested_scroll.setOnScrollChangeListener { view: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+            val topListPosition = top_250_recycle.y + top_250_recycle.height
+            val screenHeight = ScreenUtils.getScreenHeight(this)
+            if (topListPosition - scrollY <= 1840 && scrollY - oldScrollY > 200) {
+                println("topListPosition =  $topListPosition   scrollY = $scrollY,  ${topListPosition - scrollY},  height =  $screenHeight")
+                topListViewModel.loadMore(this)
+            }
+        }
     }
 
     private fun getMovieTop250() {

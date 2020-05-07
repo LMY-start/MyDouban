@@ -53,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun loadDetail() {
         stateView.showLoading(R.string.is_loading)
-        detailViewModel.getMovieDetail("1292226")
+        detailViewModel.getMovieDetail(intent.getStringExtra("id"))
     }
 
     private fun handelMovieDetailRes() {

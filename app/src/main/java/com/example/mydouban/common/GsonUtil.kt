@@ -12,6 +12,13 @@ class GsonUtil {
                 .create()
                 .fromJson(jsonString, T::class.java)
         }
+
+        inline fun <reified T> toJson(src: T): String {
+            return GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create()
+                .toJson(src, T::class.java)
+        }
     }
 
 }

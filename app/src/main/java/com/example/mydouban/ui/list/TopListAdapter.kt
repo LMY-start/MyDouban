@@ -18,8 +18,8 @@ class TopListAdapter() : Adapter<TopListAdapter.TopListViewHolder>() {
     private var onItemClickListener: OnItemClickListener? = null
 
     interface OnItemClickListener {
-        fun onItemClick(view: View?, position: Int)
-        fun onItemClickWantWatch(view: View?, position: Int)
+        fun onItemClick(movieSubject: MovieSubject)
+        fun onItemClickWantWatch(movieSubject: MovieSubject)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -37,33 +37,19 @@ class TopListAdapter() : Adapter<TopListAdapter.TopListViewHolder>() {
         )
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.addOnScrollListener(object : OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState);
-                val linearManager = (recyclerView.layoutManager as LinearLayoutManager)
-                val lastItemPosition = linearManager.findLastVisibleItemPosition()
-                val firstItemPosition = linearManager.findFirstVisibleItemPosition()
-                println("get onScrollStateChanged ++++++++++++++++++    $lastItemPosition , $firstItemPosition")
-            }
-           }
-        )
-    }
-
     override fun getItemCount() = movies.size
 
     override fun onBindViewHolder(holder: TopListViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
             onItemClickListener?.let {
-                onItemClickListener!!.onItemClick(holder.itemView, holder.layoutPosition)
+                onItemClickListener!!.onItemClick(movies[holder.layoutPosition])
             }
         }
 
         holder.itemView.findViewById<ViewGroup>(R.id.btn_want_watch).setOnClickListener {
             onItemClickListener?.let {
                 onItemClickListener!!.onItemClickWantWatch(
-                    holder.itemView,
-                    holder.layoutPosition
+                    movies[holder.layoutPosition]
                 )
             }
         }
@@ -75,7 +61,6 @@ class TopListAdapter() : Adapter<TopListAdapter.TopListViewHolder>() {
         val newMovies = mutableListOf<MovieSubject>()
         newMovies.addAll(newMovieSubjects)
         if (newMovies.size > 1) {
-            movies.clear()
             movies.addAll(newMovies)
             notifyDataSetChanged()
         } else {

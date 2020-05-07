@@ -46,9 +46,15 @@ class DashboardListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         dashboard_top_recycle.layoutManager = GridLayoutManager(this.context, 3)
         dashboard_top_recycle.adapter = topAdapter
+        dashboard_top_recycle.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
 
+            }
+
+        }
+        )
         val linearLayoutManager = LinearLayoutManager(this.context)
-        linearLayoutManager.orientation= LinearLayoutManager.HORIZONTAL
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         dashboard_in_theater_recycle.layoutManager = linearLayoutManager
         dashboard_in_theater_recycle.adapter = inTheaterAdapter
 
