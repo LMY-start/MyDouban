@@ -1,18 +1,27 @@
 package com.example.mydouban.ui.collect
 
+import android.content.Context
+import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
 import com.example.mydouban.databinding.FragmentCollectItemBinding
 import com.example.mydouban.model.Collect
+import com.example.mydouban.repository.local.dao.CollectDaoOperation
+import com.skydoves.powermenu.MenuAnimation
+import com.skydoves.powermenu.PowerMenu
+import com.skydoves.powermenu.PowerMenuItem
 
 class CollectAdapter :
     RecyclerView.Adapter<CollectAdapter.ViewHolder>() {
 
     private var collects: MutableList<Collect> = mutableListOf()
+    var reloadAllCollects: (() -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,7 +37,35 @@ class CollectAdapter :
     override fun getItemCount() = collects.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val operateBtn = holder.itemView.findViewById<ImageView>(R.id.operate_btn)
+
+        val itemMenu = getItemMenu(holder.itemView.context)
+        itemMenu.setOnMenuItemClickListener { _, _ ->
+            itemMenu.dismiss()
+            deleteSelectedItem(holder.itemView.context, position)
+        }
+
+        operateBtn.setOnClickListener {
+            itemMenu.showAsAnchorLeftBottom(it)
+        }
+
         holder.bind(collects[position])
+    }
+
+    private fun getItemMenu(context: Context) = PowerMenu.Builder(context)
+        .addItem(PowerMenuItem("删除"))
+        .setAnimation(MenuAnimation.DROP_DOWN)
+        .setMenuRadius(10f)
+        .setMenuShadow(10f)
+        .setTextColor(ContextCompat.getColor(context, R.color.black))
+        .setTextTypeface(Typeface.DEFAULT)
+        .setShowBackground(false)
+        .build()
+
+    private fun deleteSelectedItem(context: Context, position: Int) {
+        val id = collects[position].id
+        CollectDaoOperation.getInstance().deleteByKeyData(context, id)
+        reloadAllCollects?.let { it() }
     }
 
     fun updateData(newData: List<Collect>) {

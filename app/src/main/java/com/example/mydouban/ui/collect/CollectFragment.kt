@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mydouban.R
 import kotlinx.android.synthetic.main.fragment_collect.*
-import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class CollectFragment : Fragment() {
 
@@ -36,7 +35,10 @@ class CollectFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        collect_list.layoutManager = GridLayoutManager(this.context,1)
+        collect_list.layoutManager = GridLayoutManager(this.context, 1)
+        adapter.reloadAllCollects = {
+            collectViewModel.getAllCollect()
+        }
         collect_list.adapter = adapter
     }
 

@@ -71,10 +71,10 @@ dependencies {
     implementation 'com.iarcuschin:simpleratingbar:0.1.5'
     implementation 'cn.carbs.android:ExpandableTextView:1.0.3'
     implementation 'com.github.gturedi:StatefulLayout:1.2.2'
+    implementation "com.github.skydoves:powermenu:2.1.2"
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'org.greenrobot:greendao:3.2.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'org.greenrobot:greendao:3.2.2'
 }
