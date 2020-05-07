@@ -109,6 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:isIndicator="true"
             android:numStars="5"
             android:progressTint="@color/rateBar"
             android:rating="@{movieSubject.rating.average/2}"
