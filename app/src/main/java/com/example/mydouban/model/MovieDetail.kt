@@ -1,12 +1,16 @@
 package com.example.mydouban.model
 
 class MovieDetail(detailDto: MovieDetailDto) {
+    val id: String = detailDto.id
+
     val title: String = detailDto.title
 
     val originalTitle: String = "${detailDto.originalTitle} (${detailDto.year})"
 
+    val country: String = detailDto.countries[0]
+
     val basicInfo =
-        "${detailDto.countries[0]} / ${detailDto.genres.joinToString(" ")} / 上映时间：${detailDto.pubdates[0]} / 片长: ${detailDto.durations[0]}"
+        "$country / ${detailDto.genres.joinToString(" ")} / 上映时间：${detailDto.pubdates[0]} / 片长: ${detailDto.durations[0]}"
 
     val poster = detailDto.images.medium
 
@@ -26,4 +30,10 @@ class MovieDetail(detailDto: MovieDetailDto) {
     val comments: List<PopularComment> = detailDto.popularComments
 
     val videos: List<MovieDetailDto.Video> = detailDto.videos
+
+    val year: Int = detailDto.year.toInt()
+
+    val genres: List<String> = detailDto.genres
+
+    var isCollected: Boolean = false
 }

@@ -23,6 +23,7 @@
     <string name="detail_play_icon">detail play icon</string>
     <string name="detail_online_play">在线观看</string>
     <string name="detail_wish_btn">想看</string>
+    <string name="detail_wish_btn_clicked">已想看</string>
     <string name="detail_tags_title">相关分类</string>
     <string name="detail_summary">简介</string>
     <string name="detail_summary_expand_hint">展开</string>

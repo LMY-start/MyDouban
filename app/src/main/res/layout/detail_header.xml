@@ -80,7 +80,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/wish_btn"
+            android:id="@+id/wishBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -118,7 +118,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/collect_btn"
+            android:id="@+id/collectBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -133,7 +133,7 @@
             android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline68"
-            app:layout_constraintTop_toTopOf="@+id/wish_btn">
+            app:layout_constraintTop_toTopOf="@+id/wishBtn">
 
             <ImageView
                 android:id="@+id/collectBtnIcon"

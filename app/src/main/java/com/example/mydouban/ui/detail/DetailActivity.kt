@@ -1,5 +1,6 @@
 package com.example.mydouban.ui.detail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -13,9 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydouban.R
 import com.example.mydouban.databinding.DetailHeaderBinding
 import com.example.mydouban.databinding.DetailRatingBinding
-import com.example.mydouban.model.Cast
+import com.example.mydouban.model.MovieDetail
 import com.example.mydouban.model.MovieDetailDto
-import com.example.mydouban.model.PopularComment
 import com.example.mydouban.ui.detail.adapter.CastsAdapter
 import com.example.mydouban.ui.detail.adapter.CommentsAdapter
 import com.example.mydouban.ui.detail.adapter.DetailImageViewAttrAdapter
@@ -38,43 +38,51 @@ class DetailActivity : AppCompatActivity() {
         get() = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
     private var movieTitle: String = ""
+    private lateinit var detail: MovieDetail
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         getMovieDetail()
         onScrollChangeListener()
+
+        wishBtn.setOnClickListener {
+            if (detail.isCollected) return@setOnClickListener
+            detailViewModel.collectMovie(detail)
+           setWishBtnStyle()
+        }
     }
 
     private fun getMovieDetail() {
         detailViewModel.detailLiveData.observe(this, Observer { detail ->
+            this.detail = detail
             movieTitle = detail.title
             summary.text = detail.summary
             headerBinding?.detail = detail
             ratingBinding?.ratingDetail = detail.ratingDetail
 
-            renderVideos(detail.videos)
-            bindTags(detail.tags)
-            bindCasts(detail.casts)
-            bindComments(detail.comments)
-
+            renderVideos()
+            bindTags()
+            bindCasts()
+            bindComments()
+            setWishBtnStyle()
         })
 
         detailViewModel.getMovieDetail("1292226")
     }
 
-    private fun bindTags(tags: List<String>) {
-        if (tags.isNotEmpty()) {
+    private fun bindTags() {
+        if (detail.tags.isNotEmpty()) {
             tagListView.visibility = View.VISIBLE
             tagListView.layoutManager = horizontalLinearLayoutManager
-            tagListView.adapter = TagsAdapter(tags)
+            tagListView.adapter = TagsAdapter(detail.tags)
         }
     }
 
-    private fun renderVideos(videos: List<MovieDetailDto.Video>) {
-        if (videos.isNotEmpty()) {
+    private fun renderVideos() {
+        if (detail.videos.isNotEmpty()) {
             detailOnlinePlays.visibility = View.VISIBLE
-            for (video: MovieDetailDto.Video in videos) {
+            for (video: MovieDetailDto.Video in detail.videos) {
                 renderVideoSourcePic(video.source.pic)
             }
         }
@@ -95,24 +103,33 @@ class DetailActivity : AppCompatActivity() {
         playIconWrapper.addView(imageView)
     }
 
-    private fun bindCasts(casts: MutableList<Cast>) {
+    private fun bindCasts() {
         castListView.layoutManager = horizontalLinearLayoutManager
-        castListView.adapter = CastsAdapter(casts)
+        castListView.adapter = CastsAdapter(detail.casts)
     }
 
-    private fun bindComments(comments: List<PopularComment>) {
+    private fun bindComments() {
         commentListView.layoutManager = LinearLayoutManager(this)
-        commentListView.adapter = CommentsAdapter(comments)
+        commentListView.adapter = CommentsAdapter(detail.comments)
         commentListView.addItemDecoration(
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         )
     }
 
     private fun onScrollChangeListener() {
-        detailScrollView.setOnScrollChangeListener { v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int ->
+        detailScrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
             val titleBottomPosition = detailTitleView.y + detailTitleView.height
             appBarTitle.text =
                 if (scrollY >= titleBottomPosition) movieTitle else resources.getString(R.string.detail_app_bar)
+        }
+    }
+
+    private fun setWishBtnStyle() {
+        if (detail.isCollected) {
+            wishBtnText.text = getString(R.string.detail_wish_btn_clicked)
+            wishBtnIcon.visibility = View.GONE
+            wishBtnText.setTextColor(Color.WHITE)
+            wishBtn.background.setTint(getColor(R.color.detailGreyLight))
         }
     }
 
