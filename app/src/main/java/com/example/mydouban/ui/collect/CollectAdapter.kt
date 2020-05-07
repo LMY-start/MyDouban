@@ -32,7 +32,6 @@ class CollectAdapter :
     }
 
     fun updateData(newData: List<Collect>) {
-        Log.i("UpdateCollect", newData.toString())
         this.collects.clear()
         this.collects.addAll(newData)
         notifyDataSetChanged()
