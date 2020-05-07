@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mydouban.R
+import com.example.mydouban.model.MovieSubject
+import com.example.mydouban.repository.local.dao.CollectDaoOperation
+import com.example.mydouban.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 
@@ -45,25 +48,30 @@ class DashboardListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         dashboard_top_recycle.layoutManager = GridLayoutManager(this.context, 3)
+        topAdapter.setOnItemClickListener(onItemClickListener)
         dashboard_top_recycle.adapter = topAdapter
-        dashboard_top_recycle.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
 
-            }
-
-        }
-        )
         val linearLayoutManager = LinearLayoutManager(this.context)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         dashboard_in_theater_recycle.layoutManager = linearLayoutManager
+        inTheaterAdapter.setOnItemClickListener(onItemClickListener)
         dashboard_in_theater_recycle.adapter = inTheaterAdapter
 
         btn_to_top_list.setOnClickListener {
             startActivity(Intent(this.requireContext(), TopListActivity::class.java))
         }
         btn_to_movie_list.setOnClickListener {
-            Toast.makeText(this.context, "startActivity to 500 movies", Toast.LENGTH_SHORT).show()
-//            startActivity(Intent(this.requireContext(),TopListActivity::class.java))
+            startActivity(Intent(this.requireContext(), TopListActivity::class.java))
         }
     }
+
+    private val onItemClickListener: OnItemClickListener = object : OnItemClickListener {
+        override fun onItemClick(movieSubject: MovieSubject) {
+            Intent(this@DashboardListFragment.requireContext(), DetailActivity::class.java).also {
+                it.putExtra("id", movieSubject.id)
+                this@DashboardListFragment.startActivity(it)
+            }
+        }
+    }
+
 }

@@ -17,10 +17,6 @@ class TopListAdapter() : Adapter<TopListAdapter.TopListViewHolder>() {
     private val movies: MutableList<MovieSubject> = mutableListOf()
     private var onItemClickListener: OnItemClickListener? = null
 
-    interface OnItemClickListener {
-        fun onItemClick(movieSubject: MovieSubject)
-        fun onItemClickWantWatch(movieSubject: MovieSubject)
-    }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.onItemClickListener = listener

@@ -42,7 +42,7 @@ class TopListActivity : AppCompatActivity() {
 
     private fun setRecycle() {
         top_250_recycle.layoutManager = LinearLayoutManager(this)
-        adapter.setOnItemClickListener(object : TopListAdapter.OnItemClickListener {
+        adapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(movieSubject: MovieSubject) {
                 Intent(this@TopListActivity, DetailActivity::class.java).also {
                     it.putExtra("id", movieSubject.id)

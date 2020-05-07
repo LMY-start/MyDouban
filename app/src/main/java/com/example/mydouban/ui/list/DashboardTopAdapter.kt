@@ -12,7 +12,11 @@ class DashboardTopAdapter :
     RecyclerView.Adapter<DashboardTopAdapter.DashBoardListViewHolder>() {
 
     private var movieTop6: MutableList<MovieSubject> = mutableListOf()
-    private var movieInTheater: MutableList<MovieSubject> = mutableListOf()
+    private var onItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashBoardListViewHolder {
         return DashBoardListViewHolder(
@@ -28,6 +32,11 @@ class DashboardTopAdapter :
     override fun getItemCount() = movieTop6.size
 
     override fun onBindViewHolder(holder: DashBoardListViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let {
+                onItemClickListener!!.onItemClick(movieTop6[holder.layoutPosition])
+            }
+        }
         holder.bind(movieTop6[position])
     }
 
