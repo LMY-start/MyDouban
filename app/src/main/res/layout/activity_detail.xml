@@ -29,124 +29,135 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/detailScrollView"
+    <com.gturedi.views.StatefulLayout
+        android:id="@+id/stateView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/detailScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_horizontal_margin">
+            android:layout_height="wrap_content">
 
-            <include
-                layout="@layout/detail_header"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activity_horizontal_margin">
 
-            <include
-                layout="@layout/detail_rating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+                <include
+                    layout="@layout/detail_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin" />
 
-            <include
-                android:id="@+id/detailOnlinePlays"
-                android:visibility="gone"
-                layout="@layout/detail_online_plays"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+                <include
+                    layout="@layout/detail_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tagListView"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:clipToPadding="false"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin" />
+                <include
+                    android:id="@+id/detailOnlinePlays"
+                    android:visibility="gone"
+                    layout="@layout/detail_online_plays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="8dp"
-                android:text="@string/detail_summary"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/detail_title_font"
-                android:textStyle="bold" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tagListView"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:clipToPadding="false"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin" />
 
-            <cn.carbs.android.expandabletextview.library.ExpandableTextView
-                android:id="@+id/summary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:textColor="@android:color/white"
-                app:etv_GapToExpandHint=" "
-                app:etv_MaxLinesOnShrink="4"
-                app:etv_ToExpandHint="@string/detail_summary_expand_hint"
-                app:etv_ToExpandHintColor="@color/grey"
-                app:etv_ToShrinkHintShow="false" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/detail_summary"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/detail_title_font"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="8dp"
-                android:text="@string/detail_casts"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/detail_title_font"
-                android:textStyle="bold" />
+                <cn.carbs.android.expandabletextview.library.ExpandableTextView
+                    android:id="@+id/summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:textColor="@android:color/white"
+                    app:etv_GapToExpandHint=" "
+                    app:etv_MaxLinesOnShrink="4"
+                    app:etv_ToExpandHint="@string/detail_summary_expand_hint"
+                    app:etv_ToExpandHintColor="@color/grey"
+                    app:etv_ToShrinkHintShow="false" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/castListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:clipToPadding="false"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="0dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/detail_casts"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/detail_title_font"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="8dp"
-                android:text="@string/detail_popular_comments"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/detail_title_font"
-                android:textStyle="bold" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/castListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:clipToPadding="false"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingEnd="0dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/commentListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:background="@drawable/round_corners_background"
-                android:backgroundTint="@color/detailBackgroundDark"
-                android:clipToPadding="false"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/detail_popular_comments"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/detail_title_font"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/round_corners_background"
+                    android:backgroundTint="@color/detailBackgroundDark"
+                    android:clipToPadding="false"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin" />
 
-    </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.gturedi.views.StatefulLayout>
+
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

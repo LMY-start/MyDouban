@@ -17,6 +17,8 @@
     <string name="cast">演员</string>
     <string name="like">like</string>
     <string name="operate_del_btn">删除</string>
+    <string name="is_loading">正在加载</string>
+    <string name="is_failed">获取数据失败，请重试</string>
 
     <string name="detail_collect_btn">看过</string>
     <string name="detail_app_bar">电影</string>

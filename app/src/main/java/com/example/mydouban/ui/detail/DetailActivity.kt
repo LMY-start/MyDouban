@@ -43,18 +43,22 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        getMovieDetail()
-        onScrollChangeListener()
 
-        wishBtn.setOnClickListener {
-            if (detail.isCollected) return@setOnClickListener
-            detailViewModel.collectMovie(detail)
-           setWishBtnStyle()
-        }
+        loadDetail()
+        handelMovieDetailRes()
+
+        onScrollChangeListener()
+        onWishBtnCLick()
     }
 
-    private fun getMovieDetail() {
+    private fun loadDetail() {
+        stateView.showLoading(R.string.is_loading)
+        detailViewModel.getMovieDetail("1292226")
+    }
+
+    private fun handelMovieDetailRes() {
         detailViewModel.detailLiveData.observe(this, Observer { detail ->
+            stateView.showContent()
             this.detail = detail
             movieTitle = detail.title
             summary.text = detail.summary
@@ -68,7 +72,11 @@ class DetailActivity : AppCompatActivity() {
             setWishBtnStyle()
         })
 
-        detailViewModel.getMovieDetail("1292226")
+        detailViewModel.errorLiveData.observe(this, Observer { e ->
+            stateView.showError(R.string.is_failed) {
+                loadDetail()
+            }
+        })
     }
 
     private fun bindTags() {
@@ -82,6 +90,7 @@ class DetailActivity : AppCompatActivity() {
     private fun renderVideos() {
         if (detail.videos.isNotEmpty()) {
             detailOnlinePlays.visibility = View.VISIBLE
+            playIconWrapper.removeAllViews()
             for (video: MovieDetailDto.Video in detail.videos) {
                 renderVideoSourcePic(video.source.pic)
             }
@@ -124,6 +133,14 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun onWishBtnCLick() {
+        wishBtn.setOnClickListener {
+            if (detail.isCollected) return@setOnClickListener
+            detailViewModel.collectMovie(detail)
+            setWishBtnStyle()
+        }
+    }
+
     private fun setWishBtnStyle() {
         if (detail.isCollected) {
             wishBtnText.text = getString(R.string.detail_wish_btn_clicked)
@@ -132,5 +149,4 @@ class DetailActivity : AppCompatActivity() {
             wishBtn.background.setTint(getColor(R.color.detailGreyLight))
         }
     }
-
 }

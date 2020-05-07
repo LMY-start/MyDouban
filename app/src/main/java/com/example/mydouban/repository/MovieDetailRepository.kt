@@ -13,18 +13,21 @@ class MovieDetailRepository {
         private const val DETAIL_URL = "https://douban.uieee.com/v2/movie/subject/"
     }
 
-    fun getMovieDetail(id: String, onSuccess: (detail: MovieDetailDto) -> Unit ) {
+    fun getMovieDetail(
+        id: String,
+        callback: ResponseCallBack<MovieDetailDto>
+    ) {
         OkHttpUtils.get().url(DETAIL_URL + id).build().execute(object : StringCallback() {
             override fun onResponse(response: String?, id: Int) {
                 val gson = GsonBuilder()
                     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                     .create()
                 var detail = gson.fromJson(response, MovieDetailDto::class.java)
-                onSuccess(detail)
+                callback.onSuccess(detail)
             }
 
             override fun onError(call: Call?, e: Exception?, id: Int) {
-                println("getMovieDetailError: $e")
+               callback.onError(e)
             }
         })
     }
