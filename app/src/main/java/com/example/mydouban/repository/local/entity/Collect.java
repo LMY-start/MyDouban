@@ -4,6 +4,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Transient;
 
 @Entity()
 public class Collect {
@@ -28,6 +29,11 @@ public class Collect {
     private String casts;
     @Property(nameInDb = "createTime")
     private String createTime;
+
+    @Transient
+    private String titleInfo;
+    @Transient
+    private String description;
 
     @Generated(hash = 948978298)
     public Collect(Long id, String title, String image, Integer year, Float average,
@@ -133,6 +139,22 @@ public class Collect {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getTitleInfo() {
+        return title.concat("(").concat(String.valueOf(year)).concat(")");
+    }
+
+    public void setTitleInfo(String titleInfo) {
+        this.titleInfo = titleInfo;
+    }
+
+    public String getDescription() {
+        return year + " / " + country + " / " + genres + " / " + directors + " / " + casts;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImage() {
