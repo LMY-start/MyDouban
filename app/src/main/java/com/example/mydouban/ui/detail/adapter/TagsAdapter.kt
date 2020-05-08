@@ -1,6 +1,5 @@
 package com.example.mydouban.ui.detail.adapter
 
-import android.content.Context
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.example.mydouban.R
 
 class TagsAdapter(private var tags: List<String>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private lateinit var context: Context
 
     companion object {
         const val HEADER_TYPE = 0
@@ -20,13 +18,12 @@ class TagsAdapter(private var tags: List<String>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        context = parent.context
         return when (viewType) {
             HEADER_TYPE ->
-                TagHeaderViewHolder(TextView(context))
+                TagHeaderViewHolder(TextView(parent.context))
 
             else ->
-                TagViewHolder(TextView(context))
+                TagViewHolder(TextView(parent.context))
         }
     }
 
@@ -38,7 +35,7 @@ class TagsAdapter(private var tags: List<String>) :
         when (getItemViewType(position)) {
             HEADER_TYPE -> {
                 (holder as TagHeaderViewHolder).textView.text =
-                    context.getString(R.string.detail_tags_title)
+                    holder.itemView.context.getString(R.string.detail_tags_title)
             }
             ITEM_TYPE -> {
                 (holder as TagViewHolder).textView.text = tags[position - 1]

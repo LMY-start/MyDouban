@@ -1,6 +1,5 @@
 package com.example.mydouban.ui.detail.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,13 +10,11 @@ import com.example.mydouban.model.Cast
 
 class CastsAdapter(private var casts: MutableList<Cast>) :
     RecyclerView.Adapter<CastsAdapter.CastViewHolder>() {
-    private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastsAdapter.CastViewHolder {
-        context = parent.context
         return CastViewHolder(
             DataBindingUtil.inflate(
-                LayoutInflater.from(context),
+                LayoutInflater.from(parent.context),
                 R.layout.detail_cast,
                 parent,
                 false
