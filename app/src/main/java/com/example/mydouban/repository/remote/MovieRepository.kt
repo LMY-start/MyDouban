@@ -1,6 +1,5 @@
 package com.example.mydouban.repository.remote
 
-import android.app.Activity
 import com.example.mydouban.common.GsonUtil
 import com.example.mydouban.model.*
 import com.example.mydouban.repository.local.SharedPreferencesStorage
@@ -22,13 +21,12 @@ class MovieRepository {
     }
 
     fun getMovieTop250(
-        activity: Activity,
         start: Int,
         onSuccessLocal: (subjects: List<MovieSubject>) -> Unit,
         onSuccessRemote: (subjects: List<MovieSubject>) -> Unit
     ) {
 
-        val subjects = SharedPreferencesStorage.getMovieSubjects(activity, start)
+        val subjects = SharedPreferencesStorage.getMovieSubjects(start)
         if (subjects.isNotEmpty()) {
             onSuccessLocal(subjects)
         } else {

@@ -1,6 +1,5 @@
 package com.example.mydouban.viewModel
 
-import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -17,10 +16,9 @@ class TopListViewModel(application: Application) : AndroidViewModel(application)
     val movieSubjectsTop250 = MutableLiveData<List<MovieSubject>>()
     private val repository = MovieRepository()
 
-    fun getMovieTop250(activity: Activity) {
+    fun getMovieTop250() {
         repository.getMovieTop250(
-            activity, currentStart,
-            onSuccessLocal = { subjects ->
+            currentStart, onSuccessLocal = { subjects ->
                 movieSubjectsTop250.postValue(subjects)
                 isLoading = false
             },
@@ -32,11 +30,12 @@ class TopListViewModel(application: Application) : AndroidViewModel(application)
                     ranking++
                     repository.getMovieSubjectDetail(subject.id) { movieSubjectDetail ->
                         val singleList = updateData(subjects, movieSubjectDetail)
-                        SharedPreferencesStorage.putMovieSubjects(activity, singleList)
+
+                        SharedPreferencesStorage.putMovieSubjects(singleList)
                         movieSubjectsTop250.update(singleList)
                     }
                 }
-                SharedPreferencesStorage.putMovieSubjects(activity, subjects)
+                SharedPreferencesStorage.putMovieSubjects(subjects)
                 movieSubjectsTop250.update(subjects)
                 isLoading = false
             })
@@ -56,10 +55,10 @@ class TopListViewModel(application: Application) : AndroidViewModel(application)
         return listOf(movieSubject)
     }
 
-    fun loadMore(activity: Activity) {
+    fun loadMore() {
         isLoading = true
         currentStart += 20
         println("+++++ load more $currentStart")
-        getMovieTop250(activity)
+        getMovieTop250()
     }
 }

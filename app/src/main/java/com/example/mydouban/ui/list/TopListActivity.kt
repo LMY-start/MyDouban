@@ -83,7 +83,7 @@ class TopListActivity : AppCompatActivity() {
                 }
                 if (!topListViewModel.isLoading  && linearManager.itemCount - lastItemPosition == 1 && newState == 0) {
                     println("get onScrollStateChanged ++++++++++++++++++    $lastItemPosition , $firstItemPosition  ${linearManager.itemCount}  $newState")
-                    topListViewModel.loadMore(this@TopListActivity)
+                    topListViewModel.loadMore()
                 }
             }
         }
@@ -96,7 +96,7 @@ class TopListActivity : AppCompatActivity() {
         topListViewModel.movieSubjectsTop250.observe(this, Observer { movies ->
             adapter.updateData(movies)
         })
-        topListViewModel.getMovieTop250(this)
+        topListViewModel.getMovieTop250()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

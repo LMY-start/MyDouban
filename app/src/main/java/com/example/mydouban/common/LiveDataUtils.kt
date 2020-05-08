@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
  * @author https://github.com/funnywolfdadada
  * @since 2020/2/16
  */
-private val mainHandler = android.os.Handler(Looper.getMainLooper())
 
 fun <T> MutableLiveData<T>.update(d: T?) {
     if (Thread.currentThread() == Looper.getMainLooper().thread) {
