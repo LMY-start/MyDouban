@@ -7,20 +7,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mydouban.R
 import com.example.mydouban.model.MovieSubject
 import com.example.mydouban.repository.local.dao.CollectDaoOperation
 import com.example.mydouban.ui.detail.DetailActivity
 import com.example.mydouban.viewModel.TopListViewModel
-import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.activity_top_list.*
 import kotlinx.android.synthetic.main.top_list_recycle_scrolling.*
-import kotlin.math.abs
 
 class TopListActivity : AppCompatActivity() {
 
@@ -30,12 +28,10 @@ class TopListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_top_list)
-        setSupportActionBar(toolbar)
         title = ""
         go_back_to_dashboard.setOnClickListener {
             finish()
         }
-        addAppBarOffsetChangListener()
         getMovieTop250()
         setRecycle()
     }
@@ -72,12 +68,26 @@ class TopListActivity : AppCompatActivity() {
     }
 
     private fun onScrollChangeListener() {
-        top_list_nested_scroll.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
-            val topListPosition = top_250_recycle.y + top_250_recycle.height
-            if (topListPosition - scrollY <= 1840 && scrollY - oldScrollY > 200) {
-                topListViewModel.loadMore(this)
+        top_250_recycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState);
+                val linearManager = (recyclerView.layoutManager as LinearLayoutManager)
+                val lastItemPosition = linearManager.findLastVisibleItemPosition()
+                val firstItemPosition = linearManager.findFirstVisibleItemPosition()
+                linearManager.itemCount
+                if (firstItemPosition >= 1) {
+                    top_list_toolbar_content.visibility = View.VISIBLE
+                }
+                if (firstItemPosition == 0) {
+                    top_list_toolbar_content.visibility = View.GONE
+                }
+                if (!topListViewModel.isLoading  && linearManager.itemCount - lastItemPosition == 1 && newState == 0) {
+                    println("get onScrollStateChanged ++++++++++++++++++    $lastItemPosition , $firstItemPosition  ${linearManager.itemCount}  $newState")
+                    topListViewModel.loadMore(this@TopListActivity)
+                }
             }
         }
+        )
     }
 
     private fun getMovieTop250() {
@@ -87,33 +97,6 @@ class TopListActivity : AppCompatActivity() {
             adapter.updateData(movies)
         })
         topListViewModel.getMovieTop250(this)
-    }
-
-    private fun addAppBarOffsetChangListener() {
-        app_bar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener,
-            View.OnClickListener {
-
-            override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-                when {
-                    verticalOffset == 0 -> {
-                        top_list_toolbar_content.visibility = View.GONE
-                        list_top250_describe.visibility = View.VISIBLE
-
-                    }
-                    abs(verticalOffset) >= appBarLayout?.totalScrollRange!! -> {
-                        top_list_toolbar_content.visibility = View.VISIBLE
-                        list_top250_describe.visibility = View.GONE
-                    }
-                    else -> {
-                        top_list_toolbar_content.visibility = View.GONE
-                        list_top250_describe.visibility = View.VISIBLE
-                    }
-                }
-            }
-            override fun onClick(v: View?) {
-                TODO("Not yet implemented")
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

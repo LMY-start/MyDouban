@@ -5,15 +5,24 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.stream.Collectors
 
-class MovieSubject(movieSubjectDto: MovieSubjectDto) {
-    val id: String = movieSubjectDto.id
-    val images: Images = movieSubjectDto.images
-    val rating: Rating = movieSubjectDto.rating
-    val title: String = movieSubjectDto.title
+class MovieSubject {
+    lateinit var id: String
+    lateinit var images: Images
+    lateinit var rating: Rating
+    lateinit var title: String
     val photos = mutableListOf<Photo>()
     var describe = ""
     var start = 0
     var ranking = 0
+
+    constructor()
+
+    constructor(movieSubjectDto: MovieSubjectDto) : this() {
+        id = movieSubjectDto.id
+        images = movieSubjectDto.images
+        rating = movieSubjectDto.rating
+        title = movieSubjectDto.title
+    }
 
     fun toCollect(): Collect {
         val trim = describe.split("/").stream().map { it.substring(0, it.lastIndex) }
@@ -25,6 +34,12 @@ class MovieSubject(movieSubjectDto: MovieSubjectDto) {
             trim[2].toString(), trim[3].toString(), trim[4].toString(),
             now
         )
+    }
+
+    companion object {
+        fun getEmptyMovieSubject(): MovieSubject {
+            return MovieSubject()
+        }
     }
 
 }

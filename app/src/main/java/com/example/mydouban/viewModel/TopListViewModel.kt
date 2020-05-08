@@ -12,7 +12,7 @@ import com.example.mydouban.repository.remote.MovieRepository
 
 class TopListViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var isLoading = false
+    var isLoading = false
     private var currentStart = 0
     val movieSubjectsTop250 = MutableLiveData<List<MovieSubject>>()
     private val repository = MovieRepository()
@@ -57,10 +57,9 @@ class TopListViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun loadMore(activity: Activity) {
-        currentStart += 20;
-        println("+++++ load more $currentStart")
-        if (isLoading) return
         isLoading = true
+        currentStart += 20
+        println("+++++ load more $currentStart")
         getMovieTop250(activity)
     }
 }
